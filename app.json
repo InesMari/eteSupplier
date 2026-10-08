@@ -1,0 +1,143 @@
+{
+  "pages": [
+    "pages/preserve/preserve",
+    "pages/guideIndex/guideIndex",
+    "pages/resetPsw/resetPsw",
+    "pages/login/login",
+    "pages/forgetPsw/forgetPsw",
+    "pages/protocol/protocol",
+    "pages/index/index",
+    "pages/registerDriver/registerDriver",
+    "pages/agreement/agreement",
+    "pages/camera/camera"
+  ],
+  "subpackages": [
+    {
+      "root": "driver",
+      "name": "司机",
+      "pages": [
+        "personal/driverDetail/driverDetail",
+        "personal/personal/personal",
+        "task/waySort/waySort",
+        "task/uploadTicket/uploadTicket",
+        "task/truckingDetail/truckingDetail",
+        "task/todoTasks/todoTasks",
+        "task/historyTasks/historyTasks",
+        "orderPackage/orderList/orderList",
+        "orderPackage/orderDetail/orderDetail",
+        "task/shortBarge/shortBarge",
+        "task/uploadKM/uploadKM",
+        "vehicleCheck/vehicleCheckManage/vehicleCheckManage",
+        "vehicleCheck/vehicleCheckDetail/vehicleCheckDetail",
+        "costCapacity/costCapacity/costCapacity",
+        "costCapacity/costCapacityList/costCapacityList",
+        "vehicleRepairCost/vehicleRepairCostList/vehicleRepairCostList",
+        "vehicleRepairCost/vehicleRepairCost/vehicleRepairCost",
+        "task/checkAndUploadKM/checkAndUploadKM",
+        "task/printTag/printTag",
+        "vehicle/vehicleManage/vehicleManage",
+        "vehicle/addVehicle/addVehicle",
+        "vehicle/vehicleDetail/vehicleDetail"
+      ]
+    },
+    {
+      "root": "supplier",
+      "name": "供应商",
+      "pages": [
+        "vehicle/vehicleManage/vehicleManage",
+        "vehicle/addVehicle/addVehicle",
+        "vehicle/vehicleDetail/vehicleDetail",
+        "driver/addDriver/addDriver",
+        "driver/driverDetail/driverDetail",
+        "driver/driverManage/driverManage",
+        "transport/transportManage/transportManage",
+        "personal/personal/personal",
+        "personal/bankcards/bankcards",
+        "personal/addBankcard/addBankcard",
+        "personal/commitment/commitment",
+        "personal/bankcardDetail/bankcardDetail",
+        "personal/supplierDetail/supplierDetail",
+        "msg/msgManage/msgManage",
+        "msg/msgDetail/msgDetail",
+        "transport/waybill/waybill",
+        "transport/wayDetail/wayDetail",
+        "transport/waySort/waySort",
+        "transport/dispatch/dispatch",
+        "personal/feeDetail/feeDetail",
+        "ld/ldManage/ldManage",
+        "ld/wayDetail/wayDetail",
+        "ld/ldDispatch/ldDispatch",
+        "ld/ldUploadTicket/ldUploadTicket",
+        "ld/ldOperationReport/ldOperationReport",
+        "vehicle/vehicleMonitor/vehicleMonitor",
+        "capacity/capacityManager/capacityManager",
+        "capacity/addCapacity/addCapacity",
+        "capacity/capacityDetail/capacityDetail",
+        "personal/staff/staffManager/staffManager",
+        "personal/staff/addStaff/addStaff",
+        "bid/bidManage/bidManage",
+        "bid/bidDetail/bidDetail",
+        "device/deviceHome/deviceHome",
+        "device/deviceRecoveryHis/deviceRecoveryHis",
+        "device/deviceRecovery/deviceRecovery",
+        "device/deviceArrange/deviceArrange",
+        "device/deviceArrangeHis/deviceArrangeHis",
+        "device/deviceRecoveryDetail/deviceRecoveryDetail",
+        "device/deviceArrangeDetail/deviceArrangeDetail",
+        "jobReg/jobRegManage/jobRegManage",
+        "jobReg/jobReg/jobReg",
+        "jobReg/jobRegDetail/jobRegDetail",
+        "jobReg/totalDetail/totalDetail"
+      ]
+    }
+  ],
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-button": "@vant/weapp/button/index"
+  },
+  "preloadRule": {
+    "pages/login/login": {
+      "network": "all",
+      "packages": [
+        "supplier"
+      ]
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    },
+    "scope.bluetooth": {
+      "desc": "你的蓝牙权限将用于连接蓝牙打印机"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "startLocationUpdateBackground",
+    "onLocationChange",
+    "startLocationUpdate"
+  ],
+  "requiredBackgroundModes": [
+    "location"
+  ]
+}

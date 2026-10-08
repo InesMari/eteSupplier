@@ -1,0 +1,48 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<van-search value="{{ value }}" bind:change="search" placeholder="输入关键字模糊搜索派车单" />
+<van-tabs active="{{active}}" bind:change="onChange">
+  <van-tab title="全部"></van-tab>
+  <van-tab title="待派车"></van-tab>
+  <van-tab title="待出车"></van-tab>
+  <van-tab title="运作中"></van-tab>
+  <van-tab title="已完成"></van-tab>
+  <van-tab title="异常终止"></van-tab><!-- 阿涛说的 -->  
+</van-tabs>
+<scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1" bindscrolltolower="scrolltolowerHandler">
+<view class="list mt_20">
+  <view class="item" wx:for="{{list}}" bindtap="toDetail" data-item="{{item}}">
+    <view class="inner">
+      <view class="title clearfix">
+        <view class="router">{{item.routeName}}</view>
+          <view class="state {{item.waybillState==0?'state0':''}} {{item.waybillState==1?'state1':''}} {{item.waybillState==2?'state2':''}} {{item.waybillState==3?'state3':''}} {{item.waybillState==5?'state5':''}}" >
+          {{item.waybillStateName}}</view>
+      </view>
+      <view class="info">
+        <view>派车单号：{{item.waybillNum}}</view>
+        <view>
+        运输车辆：{{format.formatEmpty(item.plateNumber)}} {{format.formatEmpty(item.vehicleTypeName)}} {{format.formatEmpty(item.vehicleLengthName)}}</view>
+        <view>派车备注：{{format.formatTo_(item.waybillNum)}}</view>
+        <view>要求运作时间：{{format.formatTo_(item.startWorkDate)}}</view>
+      </view>
+    </view>
+    <view class="fee">
+      <view class="item">
+        <view>费用项</view>
+        <view>运费合计</view>
+      </view>
+      <view class="item">
+        <view>应收</view>
+        <view>{{format.formatToZero(item.totalFee)}}</view>
+      </view>
+      <view class="item">
+        <view>已收</view>
+        <view>{{format.formatToZero(item.payFee)}}</view>
+      </view>
+      <view class="item">
+        <view>未收</view>
+        <view>{{format.formatToZero(item.unPayFee)}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+</scroll-view>

@@ -1,0 +1,12 @@
+<!-- <view class="header">
+  <view class="name">{{userInfo.userName}}</view>
+  <view class="detailBtn" bindtap="toDetail">资料管理</view>
+</view> -->
+<view class="headInfo">
+  <image class="bg" src="/common/images/personal_bg.png" mode="widthFix"></image>
+  <view class="userInfo">
+    <view class="name">{{userInfo.userName}}</view>
+  </view>
+  <view class="personal" bindtap="toDetail">资料管理<van-icon name="arrow" /></view>
+</view>
+<button class="exit" bindtap="toLogout">退出登陆</button>

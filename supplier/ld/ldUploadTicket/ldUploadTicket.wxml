@@ -1,0 +1,33 @@
+<!-- <view class="pageTitle">
+  <image class="bg" src="../../../common/images/detail_bg0.png"></image>
+  <view class="info">
+    <view class="route clearfix">
+      <view class="fl">派车单号</view>
+      <view class="fr">{{info.waybillNum}}</view>
+    </view>
+  </view>
+</view> -->
+<view class="myField">
+ <view class="item clearfix">
+  <view class="label">派车单号</view>
+  <view class="input-text right">
+    {{info.waybillNum}}
+  </view>
+ </view>
+</view>
+<view class="uploadImg">
+  <view class="title">上传图片<text>最多上传5张，已经上传<text class="zt_333">{{ticketList.length}}</text>张</text></view>
+  <view class="tip">只能上传jpg/png文件，单张图片不超过20mb</view>
+  <view class="list">
+    <view class="item">
+      <van-uploader 
+        file-list="{{ticketList}}"
+        bind:after-read="afterRead" bind:delete="deleteImg" upload-text="上传图片" 
+        show-upload="{{ticketList.length<5}}"
+      />
+    </view>
+  </view>
+</view>
+<view class="footerBtn" bindtap="submit">
+  <button>提交</button>
+</view>

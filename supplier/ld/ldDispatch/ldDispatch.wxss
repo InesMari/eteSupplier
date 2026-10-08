@@ -1,0 +1,99 @@
+page{
+  background:#F1F2F5;
+  padding-bottom: 120rpx;
+}
+.pageTitle{
+  margin: 30rpx;
+  border-radius: 18rpx;
+  overflow: hidden;
+  position: relative;
+}
+.pageTitle .bg{
+  height: 86rpx;
+  width: 100%;
+}
+.pageTitle .info{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding:28rpx;
+  box-sizing: border-box;
+}
+.pageTitle .info .route>view{
+  font-size: 32rpx;
+  color:#fff;
+  line-height: 1;
+}
+.pageTitle .info .waybillNum{
+  font-size:24rpx;
+  color: #fff;
+  line-height: 1;
+  margin-top: 22rpx;
+}
+
+.tabs{
+  margin: 0 30rpx 30rpx;
+  border:1rpx solid #1990ff;
+  border-radius: 6rpx;
+  background:#fff;
+}
+.tabs .tab{
+  color: #1990ff;
+  line-height: 70rpx;
+  text-align: center;
+  float: left;
+  width: 33.3333%;
+  border-right:1rpx solid #1990ff;
+  box-sizing: border-box;
+}
+.tabs .tab:last-child{
+  border:none;
+}
+.tabs .tab.active{
+  color: #fff;
+  background:#1990ff;
+}
+
+.filter-container{
+  height: 100%;
+}
+.filter-container input{
+  width: 90%;
+  display: block;
+  margin: 20rpx auto;
+  border:1rpx solid #dee2e9;
+  border-radius: 6rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  height: 80rpx;
+}
+.filter-container .scrollList{
+  height: calc(100% - 280rpx);
+}
+.filter-container .scrollList .item{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 24rpx;
+  border-bottom: 1rpx solid #dee2e9;
+}
+.filter-container .scrollList .item:first-child{
+  border-top: 1rpx solid #dee2e9;
+}
+.filter-container .btn{
+  margin:30rpx auto;
+  width:200rpx;
+}
+
+.myField .item.vehicleType .input-text::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  height: 70%;
+  border-left: 1rpx solid #ebedf0;
+}
+.myField .item.vehicleType picker{
+  position: relative;
+}

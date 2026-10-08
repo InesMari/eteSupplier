@@ -1,0 +1,51 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="myField">
+  <view class="item clearfix">
+    <view class="label">登记月份</view>
+    <view class="input-text">{{format.formatTo_(info.info.month)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">仓储名称</view>
+    <view class="input-text">{{info.info.workName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">费用类型</view>
+    <view class="input-text">{{info.info.itemTypeName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">作业名称</view>
+    <view class="input-text">{{info.info.itemName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">计费单位</view>
+    <view class="input-text">{{info.info.unit}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">税率(%)</view>
+    <view class="input-text">{{format.formatTo_(info.info.tax)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">期初未结算</view>
+    <view class="input-text">{{info.info.endNoSettleNum}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">作业单数量</view>
+    <view class="input-text">{{format.formatTo_(info.info.count)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">作业确认数量</view>
+    <view class="input-text">{{format.formatTo_(info.info.confirmNumSum)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">结算数量</view>
+    <view class="input-text">{{format.formatTo_(info.info.settleNumSum)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">结存未结算  </view>
+    <view class="input-text">{{format.formatTo_(info.info.noSettleNumSum)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">含税结算金额</view>
+    <view class="input-text">{{format.formatTo_(info.info.settleFeeWithTaxSum)}}</view>
+  </view>
+</view>

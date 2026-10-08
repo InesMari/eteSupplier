@@ -1,0 +1,2 @@
+<!-- <web-view src = "http://pt.1000e56.com/agreement.html" bindmessage="getMessage"></web-view> -->
+<web-view src = "{{url}}" bindmessage="getMessage"></web-view>

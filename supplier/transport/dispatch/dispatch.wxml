@@ -1,0 +1,57 @@
+<block wx:if="{{showDriver}}">
+  <van-search value="{{ value }}" bind:change="searchDriver" placeholder="搜索司机" />
+  <image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+  <scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="driverToupper" upper-threshold="1" bindscrolltolower="driverScrolltolowerHandler">
+    <view class="comList">
+      <view class="clearfix item" wx:for="{{driverList}}" wx:key="{{index}}" bindtap="driverRadioChange" data-item="{{item}}" data-index="{{index}}">
+        <view class="header">
+          <image src="/common/images/driverHeader.png"></image>
+        </view>
+        <view class="info">
+          <view class="name">{{item.driverName}}</view>
+          <view class="phone">{{item.driverPhone}}</view>
+        </view>
+        <radio name="driverRadio" value="{{item.isChecked}}" checked="{{item.isChecked}}" color="#E12006"/>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="footerBtn">
+    <button bindtap="toshowVehicle" disabled="{{selectVehicleBtn}}">选择车辆</button>
+  </view>
+</block>
+
+<!-- 选择车辆 -->
+<block wx:if="{{showVehicle}}">
+  <image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+  <van-search value="{{ value }}" bind:change="searchVehicle" placeholder="搜索车牌" />
+  <scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="vehicleToupper" upper-threshold="1" bindscrolltolower="vehicleScrolltolowerHandler">
+    <view class="comList">
+      <view class="clearfix item" wx:for="{{vehicleList}}" bindtap="vehicleRadioChange" data-index="{{index}}" data-item="{{item}}">
+        <view class="header">
+          <image src="/common/images/vehicleHeader.png"></image>
+        </view>
+        <view class="info threeRows">
+          <view class="phone">{{item.plateNumber}}</view>
+          <view class="name">{{item.vehicleTypeName}}</view>
+          <view>{{item.vehicleLengthName}}</view>
+        </view>
+        <radio name="driverRadio" value="{{item.isChecked}}" checked="{{item.isChecked}}" color="#E12006"/>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="footerBtn btns">
+    <button bindtap="submit" disabled="{{submitBtn}}">确认调度</button>
+    <button class="default" bindtap="toshowDriver">选择司机</button>
+  </view>
+</block>
+
+<block wx:if="{{showFinish}}">
+  <view class="finishPage">
+    <van-icon name="checked" />
+    <view class="tipText">运单分配成功</view>
+    <view class="finishView">
+      <button bindtap="toDetail">查看运单</button>
+      <view class="backText" bindtap="toHome">返回首页</view>
+    </view>
+  </view>
+</block>

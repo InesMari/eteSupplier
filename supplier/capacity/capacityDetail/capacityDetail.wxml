@@ -1,0 +1,58 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="myField">
+  <view class="item clearfix">
+    <view class="label">车牌号</view>
+    <view class="input-text">{{info.plateNumber}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">车长</view>
+    <view class="input-text">{{info.vehicleLengthName}}</view>
+  </view> 
+  <view class="item clearfix">
+    <view class="label">车型</view>
+    <view class="input-text">{{info.vehicleTypeName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">预计到达起始地时间</view>
+    <view class="input-text">{{info.scheduleTime}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">装货起始地</view>
+    <view class="input-text">{{info.beginCityName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">线路目的地</view>
+    <view class="input-text">{{info.endCityName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">司机姓名</view>
+    <view class="input-text">{{info.driverName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">司机手机</view>
+    <view class="input-text">{{info.driverPhone}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">备注</view>
+    <view class="input-text">{{info.remark}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">匹配状态</view>
+    <view class="input-text">{{info.remark}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">匹配订单计划编号</view>
+    <view class="input-text">{{format.formatTo_(info.ordScheduleNum)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">匹配订单计划线路</view>
+    <view class="input-text">{{format.formatTo_(info.routeName)}}</view>
+  </view>
+</view>
+<view class="footerBtn btns" wx:if="{{!info.isHistory}}">
+  <button class="default" bindtap="del">删除</button>
+  <button bindtap="toEdit">修改</button>
+</view>
+<view class="footerBtn" wx:if="{{info.isHistory}}">
+  <button bindtap="copyAdd">复制</button>
+</view>

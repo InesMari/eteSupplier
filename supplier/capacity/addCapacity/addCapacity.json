@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "上报运力",
+  "usingComponents": {    
+    "regionPicker":"/common/components/region-picker/regionPicker",
+    "popover": "/common/components/popover/popover"  
+  }
+}

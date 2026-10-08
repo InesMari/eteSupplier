@@ -1,0 +1,94 @@
+<view class="myField pb_30">
+ <view class="field-title">上传银行卡</view>
+  <view class="item-upload clearfix">
+   <view class="upload-box fl">
+      <van-uploader 
+        file-list="{{idCardFrontList}}" 
+        show-upload="{{idCardFrontList.length<1 || !idCardFrontList}}"
+        bind:after-read="afterRead" bind:delete="deleteImg" upload-text="上传银行卡" >
+        <view class="upload-show" wx:if="{{idCardFrontList.length<1 || !idCardFrontList}}">
+          <image class="bg" src="../../../common/images/xsz_bg.png" alt=""></image>
+          <image class="icon" src="../../../common/images/upload_icon.png" alt=""></image>
+          <text>上传银行卡</text>
+        </view>
+      </van-uploader >
+    </view>
+  </view> 
+</view>
+<view class="myField">
+  <van-cell-group>
+    <van-field
+      placeholder="开户卡号"
+      label="开户卡号"
+      value="{{info.bankCard}}" data-key="bankCard" bindinput="inputSetData"
+    />  
+  </van-cell-group>
+  <view class="item clearfix">
+    <view class="label">开户行</view>
+    <view class="input-text">
+      <picker mode="selector" range="{{bankList}}" bindchange="bankChange" range-key="codeName" value="{{bankIndex}}">
+          <view wx:if="{{bankList.length !=0 &&bankIndex!=null}}">
+            {{bankList[bankIndex].codeName}}
+          </view>
+          <view style="color:#c8c9cc;" wx:else>开户行</view>
+        </picker>
+    </view>
+  </view>
+
+  <van-cell-group>
+    <van-field
+      placeholder="支行名称"
+      label="支行名称"
+      value="{{info.bankSubName}}" data-key="bankSubName" bindinput="inputSetData"
+    />  
+  </van-cell-group>
+  <view class="item clearfix">
+    <view class="label">银行卡类型</view>
+    <view class="input-text">
+      <!-- <picker mode="date" value="{{info.expireDate}}" bindchange="bindDateChange" data-key="expireDate">
+        <view wx:if="{{info.expireDate}}">
+          {{info.expireDate}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>开户行</view>
+      </picker> -->
+      <van-radio-group class="fl" value="{{ info.bankType }}" bind:change="radioChange">
+        <van-radio name="1" class="fl mr_20" icon-size="35rpx" wx:if="{{!isIndividual}}">对公账户</van-radio>
+        <van-radio name="2" class="fl" icon-size="35rpx">对私账户</van-radio>
+      </van-radio-group>
+    </view>
+  </view>
+  <van-cell-group>
+    <van-field
+      placeholder="开户手机号"
+      label="开户手机号"
+      value="{{info.bankPhone}}" data-key="bankPhone" bindinput="inputSetData"
+    />
+    <van-field
+      placeholder="开户名字"
+      label="开户名字"
+      value="{{info.bankAccountName}}" data-key="bankAccountName" bindinput="inputSetData"
+    />
+    <van-field
+      placeholder="纳税人识别号"
+      label="纳税人识别号"
+      value="{{info.taxpayerNum}}" data-key="taxpayerNum" bindinput="inputSetData"
+      wx:if="{{info.bankType==1}}"
+    />
+    <van-field
+      placeholder="身份证号"
+      label="身份证号"
+      value="{{info.userPayeeCard}}" data-key="userPayeeCard" bindinput="inputSetData"
+      wx:if="{{info.bankType==2}}"
+      bindblur="checkCard"
+    />
+  </van-cell-group>
+  <view class="commitment item" wx:if="{{showCommitment&&info.bankType==2}}">
+    <van-checkbox value="{{ commitmentChecked }}" shape="square" bind:change="changCommitmente" icon-size="28rpx">
+      您正在操作添加非本人银行卡，需仔细阅读承诺函
+    </van-checkbox>
+    <view class="tocommitment" bindtap="tocommitment">《转账非本人承诺函》</view>
+  </view>
+</view>
+<view class="footerBtn">
+  <button bindtap="save">绑定</button>
+</view>

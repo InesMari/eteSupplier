@@ -1,0 +1,251 @@
+/* 容器样式 */
+.print-container {
+    min-height: 100vh;
+    padding: 20rpx;
+    background: #f1f2f5;
+}
+
+/* 隐藏画布 */
+.print-canvas {
+    position: fixed;
+    left: -9999rpx;
+    top: -9999rpx;
+    width: 0;
+    height: 0;
+}
+
+/* 信息卡片通用样式 */
+.info-card {
+    background: #ffffff;
+    border-radius: 24rpx;
+    padding: 32rpx;
+    margin-bottom: 24rpx;
+    box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 24rpx;
+    padding-left: 16rpx;
+    border-left: 8rpx solid #e70b1d;
+}
+
+/* 运单号内容样式 */
+.waybill-content {
+    display: flex;
+    align-items: center;
+    padding: 24rpx;
+    background: #f8f9fc;
+    border-radius: 16rpx;
+}
+
+.waybill-label {
+    font-size: 28rpx;
+    color: #666666;
+}
+
+.waybill-number {
+    flex: 1;
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #333333;
+    word-break: break-all;
+}
+
+.copy-btn {
+    padding: 12rpx 24rpx;
+    background: linear-gradient(135deg, #e70b1d 0%, #c41a2e 100%);
+    color: #ffffff;
+    border-radius: 8rpx;
+    font-size: 24rpx;
+}
+
+/* 打印机状态样式 */
+.printer-status {
+    margin-bottom: 24rpx;
+}
+
+.status-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+
+.status-row:last-child {
+    margin-bottom: 0;
+}
+
+.status-label {
+    font-size: 28rpx;
+    color: #666666;
+    min-width: 140rpx;
+}
+
+.status-badge {
+    padding: 8rpx 20rpx;
+    border-radius: 24rpx;
+    font-size: 24rpx;
+}
+
+.status-badge.connected {
+    background: rgba(76, 175, 80, 0.15);
+    color: #4CAF50;
+}
+
+.status-badge.disconnected {
+    background: rgba(244, 67, 54, 0.15);
+    color: #F44336;
+}
+
+.device-picker {
+    flex: 1;
+    padding: 16rpx;
+    background: #f8f9fc;
+    border-radius: 8rpx;
+}
+
+.picker-text {
+    font-size: 28rpx;
+    color: #333333;
+}
+
+/* 操作按钮样式 */
+.action-buttons {
+    display: flex;
+    gap: 16rpx;
+}
+
+.action-btn {
+    flex: 1;
+    height: 72rpx;
+    line-height: 72rpx;
+    font-size: 26rpx;
+    border: none;
+    border-radius: 12rpx;
+    background: #e0e0e0;
+    color: #666666;
+}
+
+.action-btn[disabled] {
+    opacity: 0.5;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, #e70b1d 0%, #c41a2e 100%);
+    color: #ffffff;
+}
+
+.action-btn.success {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #ffffff;
+}
+
+.action-btn.danger {
+    background: linear-gradient(135deg, #F44336 0%, #da190b 100%);
+    color: #ffffff;
+}
+
+/* 预览区域样式 */
+.preview-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32rpx;
+    background: #f8f9fc;
+    border-radius: 16rpx;
+    margin-bottom: 24rpx;
+}
+
+.preview-image {
+    width: 400rpx;
+    border-radius: 8rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.preview-tip {
+    margin-top: 16rpx;
+    font-size: 24rpx;
+    color: #999999;
+}
+
+.preview-empty {
+    padding: 80rpx 32rpx;
+    text-align: center;
+    background: #f8f9fc;
+    border-radius: 16rpx;
+    margin-bottom: 24rpx;
+}
+
+.preview-empty text {
+    font-size: 28rpx;
+    color: #999999;
+    display: block;
+    margin-bottom: 24rpx;
+}
+
+.retry-btn {
+    width: 240rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    font-size: 26rpx;
+    background: linear-gradient(135deg, #e70b1d 0%, #c41a2e 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 32rpx;
+}
+
+/* 打印按钮样式 */
+.print-buttons {
+    display: flex;
+    gap: 16rpx;
+}
+
+.print-btn {
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    font-size: 30rpx;
+    font-weight: 500;
+    border: none;
+    border-radius: 16rpx;
+    background: #e0e0e0;
+    color: #fff;
+}
+
+.print-btn[disabled] {
+    opacity: 0.5;
+    color: #fff;
+}
+
+.print-btn.success {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #ffffff;
+}
+
+/* 温馨提示样式 */
+.tips-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
+    padding: 32rpx;
+    box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+}
+
+.tips-title {
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 20rpx;
+}
+
+.tips-list {
+    padding-left: 20rpx;
+}
+
+.tips-item {
+    font-size: 26rpx;
+    color: #666666;
+    line-height: 1.8;
+    margin-bottom: 8rpx;
+}

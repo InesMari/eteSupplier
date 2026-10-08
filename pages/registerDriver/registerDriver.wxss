@@ -1,0 +1,38 @@
+page{
+  background: #f5f5f5;
+  padding-bottom: 120rpx;
+}
+.van-uploader{
+  float: left;
+}
+
+
+.filter-container{
+  height: 100%;
+}
+.filter-container input{
+  width: 90%;
+  display: block;
+  margin: 20rpx auto;
+  border:1rpx solid #dee2e9;
+  border-radius: 6rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  height: 80rpx;
+}
+.filter-container .scrollList{
+  height: calc(100% - 120rpx);
+}
+.filter-container .scrollList .item{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 24rpx;
+  border-bottom: 1rpx solid #dee2e9;
+}
+.filter-container .scrollList .item:first-child{
+  border-top: 1rpx solid #dee2e9;
+}
+.filter-container .btn{
+  margin:30rpx auto;
+  width:200rpx;
+}

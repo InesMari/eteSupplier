@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "作业登记操作",
+  "usingComponents": {
+    "popover": "/common/components/popover/popover"
+  }
+}

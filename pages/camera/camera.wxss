@@ -1,0 +1,205 @@
+.handle {
+  display: flex;
+  justify-content: space-around;
+  font-size: 28rpx;
+  height: 75px;
+  padding: 7.5px 0;
+  background: rgb(255, 255, 255);
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+}
+
+.handle_ps,
+.handle_card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 75px;
+  line-height: 25px;
+  background: #ffffff;
+  padding: 0;
+  font-size: 25rpx;
+  /* background: #000; */
+}
+
+.handle_ps::after {
+  border: none;
+}
+
+.handle_card::after {
+  border: none;
+}
+
+.handle_ps_image {
+  width: 50px;
+  height: 50px;
+}
+
+.handle_card_name {
+  font-size: 25rpx;
+}
+
+.handle_card_icon {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+
+}
+
+.focus-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 90px);
+  z-index: 1;
+}
+
+.focus-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 5%;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: transparent;
+}
+
+.focus-tip {
+  position: absolute;
+  top: calc(50% + 2.5% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffff;
+  font-size: 28rpx;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+  z-index: 3;
+}
+
+.watermark {
+  position: fixed;
+  width: 100%;
+  bottom: 120px;
+  left: 20px;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  border-radius: 10rpx;
+  z-index: 2;
+}
+
+.watermark .topView {
+  display: flex;
+  background-color: #fff;
+  border-radius: 6px;
+  align-items: center;
+  width: 60%;
+  overflow: hidden;
+}
+
+.watermark .time {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 12px 10px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.watermark .time-digit {
+  font-size: 22px;
+  background: linear-gradient(180deg, #0160f2, #00000c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+.watermark .logo {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.watermark .bottomView {
+  position: relative;
+  padding:3px 0 3px 10px;
+  margin-top: 10px;
+}
+.watermark .bottomView .line{
+  position: absolute;
+  left: 0;
+  top:0;
+  height: 100%;
+  width: 3px;
+  border-radius: 20px;
+  background: #e50011;
+}
+.dateweek {
+  font-size: 12px;
+}
+
+.location_box {
+  margin-top: 8px;
+  word-break: break-all;
+  line-height: 1.5;
+  font-size: 12px;
+}
+
+.preview-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 90px);
+}
+
+.preview-buttons {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+  background: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.preview-btn {
+  flex: 1;
+  margin: 0 20rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.retake-btn {
+  background: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  border: 2rpx solid #ffffff;
+}
+
+.retake-btn::after {
+  border: none;
+}
+
+.use-btn {
+  background: #07c160;
+  color: #ffffff;
+}
+
+.use-btn::after {
+  border: none;
+}

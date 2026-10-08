@@ -1,0 +1,21 @@
+<van-search value="{{ searchStr }}" bind:change="search" placeholder="输入关键字搜索" />
+<image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+<scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1" bindscrolltolower="scrolltolowerHandler">
+  <view class="scorllList mt_20">
+    <view class="item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="toDetail">
+      <view class="inner">
+        <view class="title clearfix"> 
+          <view class="router fl">{{item.recordNum  }}</view>
+          <view class="state {{item.confirmState==0?'state0':''}} {{item.confirmState==1?'state1':''}} {{item.confirmState==2?'state2':''}} {{item.confirmState==3?'state3':''}} {{item.confirmState==5?'state5':''}}" >
+          {{item.confirmStateName}}</view>
+        </view>
+        <view class="info">
+          <view>整理日期：<text class="text">{{item.actualDate}}</text></view>
+          <view>器具数量：<text class="text">{{item.dealNum}}</text></view>
+          <view>客户名称：<text class="text">{{item.srcWorkName}}</text></view>
+          <view>备注：<text class="text">{{item.remark}}</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

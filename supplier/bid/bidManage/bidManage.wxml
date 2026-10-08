@@ -1,0 +1,61 @@
+<view class="filter" bindtap="showFilter">筛选</view>
+<image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+<scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1" bindscrolltolower="scrolltolowerHandler">
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="index" bindtap="toDetail" data-item="{{item}}">
+      <view class="inner">
+        <view class="title clearfix"> 
+          <view class="router fl">
+          有效截止剩余<text class="red">{{item.eDay}}</text>天<text class="red">{{item.eHour}}</text>小时<text class="red">{{item.eMin}}</text>分<text class="red">{{item.eSec}}</text>秒
+          </view>
+          <view class="state {{item.bidSts==0?'state0':''}} {{item.bidSts==1?'state1':''}}}" >{{item.bidStsName}}</view>
+        </view>
+        <view class="info">
+          <view>{{item.rfqQuoteNum}}<text class="text" style="margin-left:30rpx;">{{item.rfqQuoteTypeName}}</text></view>
+          <view class="address" wx:if="{{item.rfqQuoteType!=4}}">
+            <view class="beginAddress">{{item.beginAddress}}</view>
+            <view class="line">
+              <view class="predictDistance">{{item.predictDistance}}km</view>
+              <van-icon name="arrow" />
+              <view class="predictTimeStr">估计{{item.predictTimeStr}}小时</view>
+            </view>
+            <view class="endAddress">{{item.endAddress}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 筛选 -->
+<popover is-show="{{isShowFilterPopover}}">
+  <view class="filter-container">
+    <view class="item">
+      <view class="label">出发地：</view>
+      <input type="text" placeholder="请输入出发地，逗号隔开" value="{{info.beginAddress}}" data-key="beginAddress" bindinput="inputSetDataDefault"></input>      
+    </view>
+    <view class="item">
+      <view class="label">目的地：</view>
+      <input type="text" placeholder="请输入出发地，逗号隔开" value="{{info.endAddress}}" data-key="endAddress" bindinput="inputSetDataDefault"></input>
+    </view>
+    <view class="item" style="height: calc(100% - 350rpx);">
+      <view class="label">请选择车长：</view>
+      <scroll-view scroll-y="true" style="height: calc(100% - 60rpx);">      
+        <view class="vehicleLengthList">
+          <view class="vItem {{item.isSelect?'active':''}}" wx:for="{{vehicleLengthList}}" bindtap="selectItem" data-index="{{index}}">{{item.codeName}}</view>
+        </view>
+      </scroll-view>
+      <!-- <picker mode="selector" range="{{vehicleLengthList}}" bindchange="vehicleLengthChange" range-key="codeName" value="{{vehicleLengthIndex}}">
+        <view wx:if="{{vehicleLengthList.length !=0 &&vehicleLengthIndex!=null}}">
+          {{vehicleLengthList[vehicleLengthIndex].codeName}}
+        </view>
+        <view style="color:#999;" wx:else>请选择车长</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker> -->
+    </view>
+    <view class="footBtn">
+      <button type="primary" size="mini" class="btn" catchtap="sureFilter">确定</button>
+      <button type="warn" size="mini" class="btn" catchtap="hideFilterPopover">取消</button>
+    </view>
+  </view>
+</popover>

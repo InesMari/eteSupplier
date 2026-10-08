@@ -1,0 +1,51 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<van-search value="{{ value }}" bind:change="search" placeholder="作业名称、作业日期  " />
+<van-tabs active="{{active}}" bind:change="onChange">
+  <van-tab title="待登记"></van-tab>
+  <van-tab title="已登记"></van-tab>
+  <van-tab title="已确认"></van-tab>
+  <van-tab title="作业汇总"></van-tab>
+</van-tabs>
+<image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+<scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1" bindscrolltolower="scrolltolowerHandler">
+  <view class="scorllList mt_20">
+    <view class="item" wx:for="{{list}}">
+      <view class="inner">
+        <view class="title clearfix"> 
+          <view class="router fl">{{item.orderNum}}</view>
+        </view>
+        <block wx:if="{{active==0}}">
+          <view class="info" bindtap="toReg" data-id="{{item.id}}"> 
+            <view>物流中心：<text class="text">{{item.workName}}</text></view>
+            <view>费用类型：<text class="text">{{item.itemTypeName}}</text></view>
+            <view>作业名称：<text class="text">{{item.itemName}}</text></view>
+            <view>单位：<text class="text">{{format.formatEmpty(item.unit)}}</text></view>
+            <view>作业日期：<text class="text">{{item.requiredWorkDate}}</text></view>
+          </view>
+        </block> 
+        <block wx:if="{{active==1 || active==2}}">
+          <view class="info" bindtap="toDetail" data-id="{{item.id}}"> 
+            <view>物流中心：<text class="text">{{item.workName}}</text></view>
+            <view>费用类型：<text class="text">{{item.itemTypeName}}</text></view>
+            <view>作业名称：<text class="text">{{item.itemName}}</text></view>
+            <view>单位：<text class="text">{{format.formatEmpty(item.unit)}}</text></view>
+            <view>登记时间：<text class="text">{{format.formatTo_(item.registerDate)}}</text></view>
+            <view>确认时间：<text class="text">{{format.formatTo_(item.confirmDate)}}</text></view>
+            <view>登记数量：<text class="text">{{item.num}}</text></view>
+          </view>
+        </block> 
+        <block wx:if="{{active==3}}">
+          <view class="info" bindtap="toSumDetail" data-item="{{item}}"> 
+            <view>登记月份：<text class="text">{{item.month}}</text></view>
+            <view>仓储名称：<text class="text">{{format.formatEmpty(item.workName)}}</text></view>
+            <view>费用类型：<text class="text">{{item.itemTypeName}}</text></view>
+            <view>作业名称：<text class="text">{{item.itemName}}</text></view>
+            <view>计费单位：<text class="text">{{item.unit}}</text></view>
+            <view>结算数量：<text class="text">{{item.settleNumSum}}</text></view>
+            <view>结算金额：<text class="text">{{item.settleFeeWithTaxSum}}</text></view>
+          </view>
+        </block> 
+      </view>
+    </view>
+  </view>
+</scroll-view>

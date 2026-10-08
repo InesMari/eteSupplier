@@ -1,0 +1,33 @@
+@import '../deviceRecovery/deviceRecovery.wxss';
+
+
+.pageTitle{
+  margin: 30rpx;
+  border-radius: 18rpx;
+  overflow: hidden;
+  position: relative;
+}
+.pageTitle .bg{
+  height: 84rpx;
+  width: 100%;
+}
+.pageTitle .info{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding:28rpx;
+  box-sizing: border-box;
+}
+.pageTitle .info .route>view{
+  font-size: 28rpx;
+  color:#fff;
+  line-height: 1;
+}
+.pageTitle .info .waybillNum{
+  font-size:24rpx;
+  color: #fff;
+  line-height: 1;
+  margin-top: 22rpx;
+}

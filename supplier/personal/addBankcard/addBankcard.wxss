@@ -1,0 +1,11 @@
+page{
+  padding-bottom: 70rpx;
+}
+.commitment .van-checkbox__label{
+  font-size: 26rpx;
+}
+.commitment .tocommitment{
+  font-size:28rpx;
+  color: #1990ff;
+  padding-left: 40rpx;
+}

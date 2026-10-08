@@ -1,0 +1,49 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="myField">
+ <view class="item clearfix">
+  <view class="label">派车单号</view>
+  <view class="input-text right">
+    {{info.waybillNum}}
+  </view>
+ </view>
+ <view class="item clearfix">
+  <view class="label">外发单号</view>
+  <view class="input-text right">
+    <input type="number" placeholder="请输入贵司单号" value="{{info.deliveryOrderNo}}" data-key="deliveryOrderNo" bindinput="inputSetDataDefault"></input>
+  </view>
+ </view>
+</view>
+<view class="list workList">
+  <view class="item clearfix" wx:for="{{info.workList}}" data-item="{{item}}">
+    <image class="state-img" wx:if="{{index==0}}" src="../../../common/images/ti.png"></image>
+    <image class="state-img" wx:if="{{index!=0&&index!=info.workList.length-1}}" src="../../../common/images/xie.png"></image>
+    <image class="state-img" wx:if="{{index==info.workList.length-1}}" src="../../../common/images/tixie.png"></image>
+    <view class="content">
+      <view class="name">{{item.workName}}</view>
+      <view class="site">{{item.workAddress}}</view>
+      <view class="time">要求到达时间：{{format.formatTo_(item.workDate)}}</view>
+      <view class="">预计到达时间：
+        <datetimepicker initValue="{{item.predictedArrivalTime}}" isInit="{{item.predictedArrivalTime?true:false}}" placeholder="选择时间" bind:change="changeDate" data-index="{{index}}" type="minute" style="display:inline-block;width:300rpx;"></datetimepicker>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="jdTitle">节点跟踪</view>
+<view class="list nodeList" style="margin:0;">
+  <view class="item clearfix" wx:for="{{info.nodeList}}" data-item="{{item}}">
+    <image class="state-img" style="top:20rpx;" wx:if="{{index==0}}" src="../../../common/images/ti.png"></image>
+    <image class="state-img" style="top:20rpx;" wx:if="{{index!=0&&index!=info.nodeList.length-1}}" src="../../../common/images/xie.png"></image>
+    <image class="state-img" style="top:20rpx;" wx:if="{{index==info.nodeList.length-1}}" src="../../../common/images/tixie.png"></image>
+    <view class="content">
+      <view class="tihuo">
+        {{item.nodeName}}
+        <input value="{{item.nodeContent}}" disabled="{{item.isOp}}" type="text" placeholder="请输入跟踪内容" data-key="nodeContent" data-index="{{index}}" bindinput="inputSetNodeContent"></input>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="footerBtn">
+  <button bindtap="submit">确<text style="margin:0 25rpx;"></text>定</button>
+</view>

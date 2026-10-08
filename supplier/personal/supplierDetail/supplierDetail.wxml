@@ -1,0 +1,63 @@
+<view class="myField mb_30 pb_30">
+ <view class="field-title">营业执照</view>
+ <view class="item item-upload clearfix">
+   <view class="upload-box fl">
+    <van-uploader 
+      file-list="{{businessLicenseImg}}" 
+      show-upload="{{false}}"
+      data-id="businessLicenseImg"
+      disabled="true"
+      deletable="{{false}}" >
+      <view class="upload-show" wx:if="{{false}}">
+        <image class="bg" src="../../../common/images/sfz_bg1.png" alt=""></image>
+        <image class="icon" src="../../../common/images/upload_icon.png" alt=""></image>
+        <text>上传营业执照</text>
+      </view>
+    </van-uploader >
+  </view>
+ </view>
+</view>
+<view class="pb_30 pt_30" style="background:#fff;">
+<!-- <van-cell-group> -->
+  <van-field
+    placeholder=""
+    label="名称"
+    disabled="true"
+    value="{{info.supplierName}}"
+  />  
+  <van-field
+    placeholder=""
+    label="类型"
+    disabled="true"
+    value="{{info.supplierTypeName}}"
+  />  
+  <van-field
+    placeholder=""
+    label="地址"
+    disabled="true"
+    value="{{info.address}}"
+  />
+  <van-field
+    placeholder=""
+    label="联系人"
+    disabled="true"
+    value="{{info.linkman}}"
+  />
+  <van-field
+    placeholder=""
+    label="联系电话"
+    disabled="true"
+    value="{{info.linkPhone}}"
+  />
+  <van-field
+    placeholder=""
+    label="是否开票"
+    disabled="true"
+    value="{{info.invoiceFlgName}}"
+  />
+<!-- </van-cell-group> -->
+</view>
+
+<!-- <view class="footerBtn">
+  <button bindtap="back">返回</button>
+</view> -->

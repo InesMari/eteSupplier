@@ -1,0 +1,56 @@
+.uploadImg{
+  padding: 20rpx 32rpx;
+}
+.uploadImg .title{
+  /* font-weight: bold; */
+
+}
+.uploadImg .title>text{
+  color: #999;
+  margin-left: 10rpx;
+  font-weight: normal;
+}
+.uploadImg .tip{
+  font-size: 24rpx;
+  margin:10rpx 0 20rpx;
+  color: #999;
+}
+.van-uploader__preview-image,.van-uploader__upload{
+  width: 200rpx!important;
+  height: 200rpx!important;
+}
+.van-uploader__preview{
+  margin: 0 20rpx 20rpx 0!important;
+}
+
+
+.pageTitle{
+  margin: 30rpx;
+  border-radius: 18rpx;
+  overflow: hidden;
+  position: relative;
+}
+.pageTitle .bg{
+  height: 86rpx;
+  width: 100%;
+}
+.pageTitle .info{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding:28rpx;
+  box-sizing: border-box;
+}
+.pageTitle .info .route>view{
+  font-size: 32rpx;
+  color:#fff;
+  line-height: 1;
+}
+.pageTitle .info .waybillNum{
+  font-size:24rpx;
+  color: #fff;
+  line-height: 1;
+  margin-top: 22rpx;
+}

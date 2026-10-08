@@ -1,0 +1,100 @@
+@import "../truckingDetail/truckingDetail.wxss";
+page{
+  padding-bottom: 150rpx;
+}
+.goods .imgList{
+  border-bottom: 1rpx solid #f6f6f6;
+}
+.goods .imgList:last-child{
+  border-bottom: none;
+}
+.myField .item .label{
+  max-width: 170rpx;
+}
+.myField .item .input-text {
+  width: calc(100% - 210rpx);
+  float: right;
+}
+.goods .detail .title {
+  font-weight: bold;
+}
+.goods .detail .inner>view{
+  width: 50%;
+  font-size: 24rpx;
+  line-height: 30rpx;
+}
+.goods .detail .inner>view:nth-child(odd){
+  width: 50%;
+}
+.wayTitle {
+  border-bottom: 1rpx solid #f6f6f6;
+}
+.van-uploader{
+  margin: 0 20rpx 20rpx 0;
+}
+.van-uploader__preview-image,.van-uploader__upload{
+  width: 200rpx!important;
+  height: 200rpx!important;
+}
+.van-uploader__preview{
+  margin: 0 20rpx 20rpx 0!important;
+}
+
+
+.alertCompnent .content{
+  padding: 40rpx 30rpx;
+}
+.alertCompnent .content .item{
+  display: flex;
+}
+.alertCompnent .content .label{
+  width: 200rpx;
+  text-align: right;
+  line-height: 50rpx;
+  font-size: 24rpx;
+}
+.alertCompnent .content .text{
+  line-height: 50rpx;
+  flex: 1;
+  font-size: 24rpx;
+  position: relative;
+}
+.alertCompnent .content .text picker,.alertCompnent .content .text input{
+  border: 1rpx solid #efefef;
+  padding: 0 10rpx;
+  border-radius: 6rpx;
+}
+.alertCompnent .content .text input{
+  padding: 4rpx 10rpx;
+}
+.alertCompnent .content .arrow-down{
+  position: absolute;
+  right: 12rpx;
+  top: 14rpx;
+}
+.alertCompnent .bottom{
+  border-top:1rpx solid #f6f6f6;
+}
+.alertCompnent .bottom button{
+  width: 50%;
+  font-size: 24rpx;
+  float: left;
+  line-height: 80rpx;
+  border-right:1rpx solid #f6f6f6;
+  background: #fff;
+  box-sizing: border-box;
+}
+.alertCompnent .bottom button:last-child{
+  border:none;
+  background: #ff4400;
+  color: #fff;
+  border-radius: 0;
+  border-bottom-right-radius: 10rpx;
+}
+.van-uploader__preview-image,.van-uploader__upload{
+  width: 200rpx!important;
+  height: 200rpx!important;
+}
+.van-uploader__preview{
+  margin: 0 20rpx 20rpx 0!important;
+}

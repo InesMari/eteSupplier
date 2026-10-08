@@ -1,0 +1,59 @@
+page{
+  padding-bottom: 120rpx;
+}
+.itemTitle{
+  padding: 30rpx 30rpx 30rpx 52rpx;
+  font-size: 30rpx;
+  position: relative;
+}
+.itemTitle::after{
+  content: "";
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  left: 22rpx;
+  top: 50%;
+  margin-top: -10rpx;
+  background: #0005aa;
+  border-radius: 50%;
+}
+.itemTitle .icon{
+  float: right;
+}
+
+.myField .itemRemark{
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18rpx 30rpx;
+  font-size: 28rpx;
+  line-height: 52rpx;
+  color: #323233;
+  position: relative;
+}
+.myField .itemRemark .label text{
+  font-size: 22rpx;
+}
+.myField .itemRemark .input-text{
+  margin-top: 20rpx;
+}
+.myField .upload-box .van-uploader__preview{
+  margin-right: 20rpx!important;
+}
+.myField .upload-box .van-uploader__preview-image{
+  width: 80px!important;
+  height: 80px!important;
+}
+
+.uploadTip{
+  font-size: 24rpx;
+  padding:0 30rpx 20rpx;
+  color: #999;
+}
+.uploadTip view{
+  line-height: 40rpx;
+  /* padding-left:48rpx; */
+}
+.uploadTip view:first-child{
+  padding: 0;
+}

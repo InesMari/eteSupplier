@@ -1,0 +1,307 @@
+<wxs src="../../common/wxs/format.wxs" module="format"></wxs>
+<view class="headerTop clearfix">  
+  <view class="userType clearfix">
+    <view class="type1 {{userType==1?'active':''}}" bindtap="chooseUserType" data-type="1" wx:if="{{haveUserType==1||haveUserType==3}}">供应商</view>
+    <view class="type2 {{userType==2?'active':''}}" bindtap="chooseUserType" data-type="2" wx:if="{{haveUserType==2||haveUserType==3}}">司机</view>
+  </view>
+  <!-- 消息管理干掉，啊涛说的，2020/12/18 14:31 -->
+</view>
+<!-- 供应商 -->
+<view class="contain" wx:if="{{userType==1}}">
+  <view class="headInfo">
+    <image class="bg" src="/common/images/info_bg.png" mode="widthFix"></image>
+    <view class="userInfo">
+      <view class="name">{{userInfo.tenantName}}</view>
+      <view class="phone">{{userInfo.billId}}</view>
+    </view>
+    <view class="finance">
+      <!-- <view class="item">
+        <view class="num">1200.88</view>
+        <view class="name">未收运费</view>
+      </view> -->
+      <view class="item" bindtap="toBankcards">
+        <view class="num">{{format.formatToZero(cardTotal)}}</view>
+        <view class="name">银行卡</view>
+      </view>
+    </view>
+    <view class="personal" bindtap="toPersonal">个人中心<van-icon name="arrow" /></view>
+  </view>
+  <view class="list clearfix">
+    <view  class="item" bindtap="toTransport">
+      <image src="/common/images/i_1.png"></image>
+      <view class="name">运输管理</view>
+      <view class="explain">查看进行订单，历史订单</view>
+      <!-- <view class="tip">4</view> -->
+      <!-- 数量统计为待派车 -->
+    </view>
+    <view  class="item" bindtap="toLD">
+      <image src="/common/images/i_8.png"></image>
+      <view class="name">零担业务</view>
+      <view class="explain">管理零担业务</view>
+    </view>
+    <view  class="item" bindtap="toDrive">
+      <image src="/common/images/i_2.png"></image>
+      <view class="name">司机管理</view>
+      <view class="explain">查看所有司机</view>
+    </view>
+    <view  class="item" bindtap="toVehicle">
+      <image src="/common/images/i_3.png"></image>
+      <view class="name">车辆管理</view>
+      <view class="explain">GPS硬件管理、新增车辆</view>
+    </view>
+    <view  class="item" bindtap="toCapacity">
+      <image src="/common/images/i_10.png"></image>
+      <view class="name">运力调度</view>
+      <view class="explain">查看、上报运力</view>
+    </view>
+    <view  class="item" bindtap="toBid">
+      <image src="/common/images/i_11.png"></image>
+      <view class="name">竞价管理</view>
+      <view class="explain">线路报价、竞价</view>
+    </view>
+    <!-- <view  class="item" bindtap="toDeviceHome" wx:if="{{userInfo.isStorehouseSupplier}}">
+      <image src="/common/images/i_13.png"></image>
+      <view class="name">器具登记</view>
+      <view class="explain">外部器具登记</view>
+    </view> -->
+    <view  class="item" bindtap="toWait">
+      <image src="/common/images/i_5.png"></image>
+      <view class="name">我的财富</view>
+      <view class="explain">运输车费提现</view>
+      <!-- <view class="tip">4</view> -->
+    </view>
+    <view  class="item" bindtap="toJobReg">
+      <image src="/common/images/i_18.png"></image>
+      <view class="name">作业登记</view>
+      <view class="explain">外包作业登记</view>
+    </view>
+    <!-- <view  class="item" bindtap="toBankcards">
+      <image src="/common/images/bank.png"></image>
+      <view class="name">银行卡管理</view>
+      <view class="explain">新增收款人、收款账号</view>
+    </view> -->
+  </view>
+</view>
+
+<!-- 司机 -->
+<view class="contain" wx:if="{{userType==2}}">
+  <view class="comList">
+    <view class="item clearfix">
+      <view class="header">
+        <image src="/common/images/driverHeader.png"></image>
+      </view>
+      <view class="info">
+        <view class="name">{{userInfo.userName}}</view>
+        <view class="phone">{{userInfo.billId}}</view>
+      </view>
+      <view class="improveInfo" bindtap="toPersonal">完善资料<van-icon name="arrow" /></view>
+    </view>
+  </view>
+  <!-- 当前任务 -->
+  <view class="currentTask" wx:if="{{info.hasCurrentTask}}">
+    <view style="padding:0 26rpx;">
+      <view bindtap="toTruckingDetail">
+        <view class="con-title">
+          {{info.waybill.routeName}}
+          <text class="state">当前任务</text>
+          <view class="btn" catchtap="toWaySort" data-item="{{info.workList}}" wx:if="{{info.workList.length>2}}">调整顺序</view>
+        </view>
+      </view>
+      <view class="operate clearfix">
+        <!-- <view class="fl" bindtap="nodeOperation" wx:for="{{info.currentWork.nodeList}}" wx:key="index" data-item="{{item}}" data-index="{{index}}" disabled="{{item.sts==1}}">{{item.nodeName}}</view> -->
+        <!-- <view class="btn fl" bindtap="nodeOperation" data-item="{{info.currentWork.nodeList[0]}}">
+          <view class="btn-con">
+            <image class="icon" mode="widthFix" src="../../common/images/arrive.png"></image>{{info.currentWork.nodeList[0].nodeName}}
+          </view>
+          <image class="btn-bg" mode="widthFix" src="{{info.currentWork.nodeList[0].sts==1?'../../common/images/btn-bg3.png':'../../common/images/btn-bg2.png'}}"></image>
+        </view> -->
+        <view class="btn fl" bindtap="nodeOperation" data-item="{{info.currentWork.nodeList[0]}}">
+          <view class="btn-con">
+            <image class="icon" mode="widthFix" src="../../common/images/arrive.png"></image>{{info.currentWork.nodeList[0].nodeName}}
+          </view>
+          <image class="btn-bg" mode="widthFix" src="{{info.currentWork.nodeList[0].sts==1?'../../common/images/btn-bg3.png':'../../common/images/btn-bg2.png'}}"></image>
+        </view>
+        <view class="btn fl" bindtap="nodeOperation" data-item="{{info.currentWork.nodeList[1]}}" disabled="{{item.sts==1}}">
+          <view class="btn-con">
+          <image class="icon" mode="widthFix" src="../../common/images/leave.png"></image>{{info.currentWork.nodeList[1].nodeName}}
+          </view>
+          <image class="btn-bg" mode="widthFix" src="../../common/images/btn-bg1.png"></image>
+        </view>
+        <!-- <view class="btn fl" bindtap="nodeOperation" data-item="{{info.lastWorkList.node}}" disabled="{{item.sts==1}}">
+          <view class="btn-con">
+          <image class="icon" mode="widthFix" src="../../common/images/leave.png"></image>{{info.lastWork.nodeName}}
+          </view>
+          <image class="btn-bg" src="../../common/images/btn-bg1.png"></image>
+        </view> -->
+      </view>
+      <view bindtap="toTruckingDetail">
+        <view class="companyName">{{info.currentWork.workName}}</view>
+        <view class="arriveTime">要求到达时间：<text class="red">{{format.formatTo_(info.currentWork.workDate)}}</text></view>
+        <view class="site" catchtap="getLocaltion">
+          {{info.currentWork.workAddress}}
+          <text>导航</text>
+          <image mode="widthFix" src="../../common/images/map-filling.png"></image>
+        </view>
+        <view class="linkDetail">
+          <view class="phone"><image mode="widthFix" src="../../common/images/phone2.png"></image>{{format.formatTo_(info.currentWork.phone)}}</view>
+          <view class="linkman"><image mode="widthFix" src="../../common/images/user_icon.png"></image>{{format.formatTo_(info.currentWork.linkmanName)}}</view>
+          <!-- <view class="remark"><image mode="widthFix" src="../../common/images/edit.png"></image>{{format.formatTo_(info.waybill.remark)}}</view> -->
+          <view class="detailtext">详情<van-icon name="arrow" /></view>
+        </view>
+      </view>
+    </view>
+    <view class="specificInfo">
+      <view class="tabs clearfix">
+        <view class="tabs_inner fl">
+          <view class="tab {{isPickupGoodsList?'active':''}}" bindtap="changeGoodsTyep" wx:if="{{info.currentWork.workType==1||info.currentWork.workType==3}}">提货信息</view>
+          <view class="tab {{isPickupGoodsList?'':'active'}}" bindtap="changeGoodsTyep" wx:if="{{info.currentWork.workType==2||info.currentWork.workType==3}}">卸货信息</view>
+        </view>
+        <view class="tabs_inner fr">
+          <view class="btn" bindtap="photoLock" wx:if="{{info.needLockedTakePictures}}"><image class="icon" mode="widthFix" src="../../common/images/photo.png"></image>上锁拍照</view>
+          <view class="btn" bindtap="seePickupImg" wx:if="{{pickupCertificateList.length>0}}"><image class="icon" mode="widthFix" src="../../common/images/image-t.png"></image>提货凭证</view>
+          <view class="btn" bindtap="toUploadTicket"><image class="icon" mode="widthFix" src="../../common/images/upload.png"></image>上传单据</view>
+        </view>
+      </view>
+      <!-- 提货信息 -->
+      <view class="goodsDetail_data" wx:if="{{isPickupGoodsList&&(info.currentWork.workType==1||info.currentWork.workType==3)}}">
+        <view>{{format.formatToZero(info.pickupGoodsCountSum)}}件</view>
+        <view>{{format.formatToZero(info.pickupGoodsWeightSum)}}KG</view>
+        <view>{{format.formatToZero(info.pickupGoodsVolumeSum)}}m³</view>
+      </view>
+      <!-- 卸货信息 -->
+      <view class="goodsDetail_data" wx:if="{{!isPickupGoodsList&&(info.currentWork.workType==2||info.currentWork.workType==3)}}">
+        <view>{{format.formatToZero(info.deliveryGoodsCountSum)}}件</view>
+        <view>{{format.formatToZero(info.deliveryGoodsWeightSum)}}KG</view>
+        <view>{{format.formatToZero(info.deliveryGoodsVolumeSum)}}m³</view>
+      </view>
+    </view>
+    <view class="goodsDetail" wx:if="{{isshowGoodsDetail}}">
+      <view class="item" wx:for="{{goodsList}}" wx:key="index">
+        <view class="title">{{item.goodsName}}</view>
+        <view class="inner clearfix">
+          <view>规格：{{format.formatTo_(item.goodsModel)}}</view>
+          <view>件数：{{item.goodsCount}}件</view>
+          <view>包装：{{format.formatTo_(item.packingTypeName)}}</view>
+          <view>重量：{{item.goodsWeight}}kg</view>
+          <view>类别：{{format.formatTo_(item.className)}}</view>
+          <view>体积：{{item.goodsVolume}}m³</view>
+        </view>
+      </view>
+    </view>
+    <view class="showmore" bindtap="showGoodsDetail">货物明细
+      <van-icon class="arrow" name="arrow-down" wx:if="{{!isshowGoodsDetail}}" />
+      <van-icon class="arrow" name="arrow-up" wx:if="{{isshowGoodsDetail}}" />
+    </view>
+    <view class="applyView" wx:if="{{info.waybill.vehicleAttribution == 2}}">
+      <button class="applyBtn" bind:tap="apply" type="primary">申请回程业务</button>
+    </view>
+  </view>
+
+  <!-- 短驳单 -->
+   <view class="currentTask" wx:if="{{info.currentWmsTask}}">
+    <view style="padding:0 26rpx;" bindtap="toShortBargeDetail">
+      <view>
+        <view class="con-title">
+          {{info.currentWmsTask.waybillNum}}
+          <text class="state">短驳</text>
+        </view>
+      </view>
+      <view style="position: relative;">
+        <view class="site">运输车辆：{{info.currentWmsTask.plateNumber}}</view>
+        <view class="site" style="padding-top: 0;">要求送达时间：{{format.formatTo_(info.currentWmsTask.requireDate)}}</view>
+        <view class="detailtext" style="top:40%">详情<van-icon name="arrow" /></view>
+      </view>
+    </view>
+    <view class="applyView">
+      <button class="applyBtn" bind:tap="showAlert" type="warn">确认完成</button>
+    </view>
+  </view>
+
+  <view class="list clearfix">
+    <view  class="item" bindtap="todoTasks">
+      <image src="/common/images/i_6.png"></image>
+      <view class="name">待办任务</view>
+      <view class="explain">所有未运作的订单</view>
+      <view class="tip" wx:if="{{info.todoTaskCount>0}}">{{info.todoTaskCount}}</view>
+      <!-- 数量统计为未完成任务 -->
+    </view>
+    <view  class="item" bindtap="toOrderPackage">
+      <image src="/common/images/i_9.png"></image>
+      <view class="name">订单包业务</view>
+      <view class="explain">用于领取订单包任务</view>
+    </view>
+    <view  class="item" bindtap="toHistoryTasks">
+      <image src="/common/images/i_7.png"></image>
+      <view class="name">历史任务</view>
+      <view class="explain">运作完成的订单记录</view>
+    </view>
+    <view  class="item" bindtap="toVehicleCheck">
+      <image src="/common/images/i_12.png"></image>
+      <view class="name">点检管理</view>
+      <view class="explain">可查看修改车辆的点检</view>
+    </view>
+    <view  class="item" bindtap="toDriverVehicle" wx:if="{{userInfo.isOwn != 1}}">
+      <image src="/common/images/i_3.png"></image>
+      <view class="name">车辆管理</view>
+      <view class="explain">新增/修改/查看车辆</view>
+    </view>
+    <view  class="item" bindtap="toCostCapacity">
+      <image src="/common/images/i_19.png"></image>
+      <view class="name">车辆变动成本</view>
+      <view class="explain">管理车辆变动成本</view>
+    </view>
+    <view  class="item" bindtap="toVehicleRepairCost" wx:if="{{userInfo.isOwn == 1}}">
+      <image src="/common/images/i_20.png"></image>
+      <view class="name">车辆修理成本</view>
+      <view class="explain">管理车辆修理成本</view>
+    </view>
+    <view  class="item" bindtap="doScan">
+      <image src="/common/images/i_21.png"></image>
+      <view class="name">标签扫码查询</view>
+      <view class="explain">扫描回单标签查看详情</view>
+    </view>
+  </view>
+</view>
+
+<!-- 短驳单确认完成提示 -->
+<alert isshow="{{isshowAlert}}" title="确认完成提示" class="alertCompnent" bind:closealert="cancelAlert" aStyle="width:500rpx;top:40%;">  
+  <view class="content">
+    <view class="item">
+      <view class="label">配送单号：</view>
+      <view class="text">{{info.currentWmsTask.waybillNum}}</view>
+    </view>
+    <view class="item">
+      <view class="label">货物总托数：</view>
+      <view class="text">{{info.currentWmsTask.palletNums}}</view>
+    </view>
+    <view class="item">
+      <view class="label">要求出库时间：</view>
+      <view class="text">{{format.formatTo_(info.currentWmsTask.requireDate)}}</view>
+    </view>
+    <view class="item" style="margin-top: 10rpx;">
+      <view class="label"><text class="red">*</text>是否返程：</view>
+      <view class="text">        
+        <van-radio-group value="{{ info.currentWmsTask.isReturn }}" bind:change="onRaidoChange">
+          <van-radio class="fl" style="margin:8rpx 20rpx 0 0;" name="{{1}}" icon-size="24rpx">是</van-radio>
+          <van-radio class="fl" style="margin:8rpx 20rpx 0 0;" name="{{0}}" icon-size="24rpx">否</van-radio>
+        </van-radio-group>
+      </view>
+    </view>
+    <view class="item" style="margin-top: 10rpx;" wx:if="{{isTimeout}}">
+      <view class="label" style="width: 120rpx;">超时原因：</view>
+      <view class="text">
+        <picker mode="selector" range="{{timeoutReasonList}}" bindchange="timeoutReasonChange" range-key="codeName" value="{{timeoutReasonIndex}}">
+          <view wx:if="{{timeoutReasonList.length !=0 && timeoutReasonIndex!=null}}">
+            {{timeoutReasonList[timeoutReasonIndex].codeName}}
+          </view>
+          <view style="color:#c8c9cc;" wx:else>请选择超时原因</view>
+          <van-icon name="arrow-down" class="arrow-down" />
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class="bottom clearfix">
+    <button bindtap="cancelAlert">取消</button>
+    <button bindtap="sureAlert">确定</button>  
+  </view>
+</alert>

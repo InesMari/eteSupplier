@@ -1,0 +1,20 @@
+<view class="addBank" bindtap="toAddBankcard">
+  <van-icon name="plus" />添加银行卡
+</view>
+<view class="list">
+  <van-swipe-cell class="swipe" right-width="{{ 65 }}" left-width="{{ 0 }}" wx:for="{{bankcardList}}" wx:key="{{index}}" >
+    <view class="item clearfix" bindtap="toDetail" data-id="{{item.id}}">
+      <view class="bankIcon">
+        <image src="{{item.bankLogo}}"></image>
+      </view>
+      <view class="info">
+        <view class="name">{{item.bankDepositName}}</view>
+        <view class="type" wx:if="{{item.bankType==1}}">对公账号</view>
+        <view class="type" wx:if="{{item.bankType==2}}">对私账号</view>
+        <view class="card_num">{{item.bankCard}}</view>
+      </view>
+      <image class="bg" mode="aspectFit" src="{{item.itemBg}}"></image>
+    </view>
+    <view slot="right" catchtap="delCard" data-id="{{item.id}}" style="line-height:292rpx;">删除</view>
+  </van-swipe-cell>
+</view>

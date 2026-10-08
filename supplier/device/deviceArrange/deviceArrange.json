@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新增整理登记",  
+  "usingComponents": {
+    "popover": "/common/components/popover/popover"
+  }
+}

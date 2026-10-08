@@ -1,0 +1,7 @@
+<picker mode="multiSelector" range="{{dateTimeArray}}" bindchange="bindDateChange" value="{{dateTime}}">
+  <view wx:if="{{dateShow}}">
+    {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}
+    <van-icon class="close" name="close" catchtap="clearDate"/>
+  </view>
+  <view wx:if="{{!dateShow}}">{{placeholder}}<van-icon class="arrow-down" name="arrow-down" /></view>
+</picker>

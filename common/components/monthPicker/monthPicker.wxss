@@ -1,0 +1,13 @@
+picker{
+  color: #05D188;
+  position: relative;
+  margin-right: 30rpx;
+}
+.arrow-down{
+ margin-left: 10rpx;
+ vertical-align: middle;
+ margin-bottom: 6rpx;
+}
+.close{
+  vertical-align: middle;
+}

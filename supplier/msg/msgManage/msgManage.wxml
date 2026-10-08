@@ -1,0 +1,16 @@
+<view class="tab">
+  <view class="item active"><text class="count">通知消息<text wx:if="{{MsgNoReadCount>0}}">({{MsgNoReadCount}})</text></text></view>
+  <view class="item" bindtap="wait"><text class="count">系统公告</text></view>
+</view>
+<view class="list">
+  <view class="item {{item.isRead==1?'unread':''}}" wx:for="{{list}}" :key="{{index}}" bindtap="toMsgDetail" data-item="{{item}}">
+    <image src="/common/images/msg.png"></image>
+    <view class="info">
+      <view class="title">
+        <text>{{item.messageModelName}}</text>
+        <text class="time fr">{{item.createDate}}</text>
+      </view>
+      <view class="content">{{item.messageContent}}</view>
+    </view>
+  </view>
+</view>

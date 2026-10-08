@@ -1,0 +1,28 @@
+@import '../todoTasks/todoTasks.wxss';
+.scorll{
+  height: calc(100% - 180rpx);
+}
+.taskList .item button{
+  background: red;
+  color: #fff;
+}
+.filter{
+  padding: 0 30rpx;
+  line-height: 70rpx;
+  background: #E6F7F0;
+}
+.filter picker{
+   color: #05D188;
+   position: relative;
+   margin-right: 30rpx;
+}
+.filter .arrow-down{
+  vertical-align: middle;
+  margin-bottom: 6rpx;
+}
+.filter .close{
+  vertical-align: middle;
+}
+.filter .orderNums{
+  color: #05D188;
+}

@@ -1,0 +1,167 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<block wx:if="{{!showFinish}}">
+
+<view class="mb_20">
+<view class="titleTab fw">基本信息</view>
+<view class="myField">
+  <view class="item clearfix">
+    <view class="label">派车单号：</view>
+    <view class="input-text">{{info.waybillNum}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">线路名称：</view>
+    <view class="input-text">{{info.routeName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">车牌号：</view>
+    <view class="input-text">{{info.plateNumber}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">司机姓名：</view>
+    <view class="input-text">{{info.driverName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">挂车号码</view>
+    <view class="input-text">{{format.formatTo_(info.trailerNumber)}}</view>
+  </view>
+</view>
+<block wx:if="{{info.type != 3}}">  
+<view class="titleTab fw mt_20">上传出车里程表照片：</view>
+<view class="myField">
+ <view class="item">
+  <view class="label" style="min-width: 310rpx;max-width: 310rpx;"><text class="red">*</text>表公里数（单位：km）</view>
+  <view class="input-text">
+    <input type="number" disabled="{{disabled}}" placeholder="公里数" value="{{info.mileage}}" data-key="mileage" bindinput="inputSetDataDefault"></input>
+  </view>
+ </view>
+</view>
+<view class="uploadImg">
+  <view class="title">上传图片</view>
+  <view class="tip">只能上传jpg/png文件，单张图片不超过20mb</view>
+  <view class="list clearfix">
+    <view class="item" wx:if="{{!disabled && ticketList.length==0}}">
+      <view class="uploadView" bindtap="toCamera">
+        <van-icon name="photograph" size="48rpx" />
+        <text>上传图片</text>
+      </view>
+    </view>
+    <view class="item" wx:if="{{ticketList.length > 0}}">
+      <view class="uploadView has-image">
+        <image class="upload-image" src="{{ticketList[0].url}}" mode="aspectFill" bindtap="previewImage"></image>
+        <view class="delete-btn" wx:if="{{!disabled}}" bindtap="deletePhoto">
+          <van-icon name="close" size="16px" color="#fff"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</block>
+<block wx:if="{{info.type == 3}}">  
+  <view class="titleTab fw mt_20">出车里程表照片：</view>
+<view class="myField">
+ <view class="item">
+  <view class="label" style="min-width: 310rpx;max-width: 310rpx;"><text class="red">*</text>表公里数（单位：km）</view>
+  <view class="input-text">
+    <input type="number" placeholder="公里数" value="{{info.startMileage}}" data-key="startMileage" bindinput="inputSetDataDefault"></input>
+  </view>
+ </view>
+</view>
+<view class="uploadImg">
+  <view class="list clearfix">
+    <view class="item">
+      <van-uploader file-list="{{startMileageList}}" disabled="{{true}}" show-upload="{{false}}" deletable="{{false}}"/>
+    </view>
+  </view>
+</view>
+<view class="titleTab fw mt_20">上传收车里程表照片：</view>
+<view class="myField">
+ <view class="item">
+  <view class="label" style="min-width: 310rpx;max-width: 310rpx;"><text class="red">*</text>表公里数（单位：km）</view>
+  <view class="input-text">
+    <input type="number" disabled="{{disabled}}" placeholder="公里数" value="{{info.mileage}}" data-key="mileage" bindinput="inputSetDataDefault"></input>
+  </view>
+ </view>
+</view>
+<view class="uploadImg">
+  <view class="title">上传图片</view>
+  <view class="tip">只能上传jpg/png文件，单张图片不超过20mb</view>
+  <view class="list clearfix">
+    <view class="item" wx:if="{{!disabled && ticketList.length==0}}">
+      <view class="uploadView" bindtap="toCamera">
+        <van-icon name="photograph" size="48rpx" />
+        <text>上传图片</text>
+      </view>
+    </view>
+    <view class="item" wx:if="{{ticketList.length > 0}}">
+      <view class="uploadView has-image">
+        <image class="upload-image" src="{{ticketList[0].url}}" mode="aspectFill" bindtap="previewImage"></image>
+        <view class="delete-btn" wx:if="{{!disabled}}" bindtap="deletePhoto">
+          <van-icon name="close" size="16px" color="#fff"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</block>
+<view class="titleTab fw mt_20">点检信息</view>
+<view class="myField checkList">
+  <view class="item clearfix" wx:for="{{info.checkList}}">
+    <view class="label">
+      <rich-text nodes="{{item.content}}"></rich-text>
+    </view>
+    <view class="input-text">
+      <view class="radioView">        
+        <van-radio-group value="{{ item.checkState }}" bind:change="onRaidoChange" data-key="checkState" data-index="{{index}}" disabled="{{disabled}}">
+          <van-radio name="{{1}}" shape="square" icon-size="40rpx">正常</van-radio>
+          <van-radio name="{{0}}" shape="square" icon-size="40rpx">异常</van-radio>
+        </van-radio-group>
+      </view>
+      <view class="abnormalView" wx:if="{{item.checkState == 0}}">
+        <van-uploader 
+          file-list="{{item.abnormalList}}" disabled="{{disabled}}" deletable="{{!disabled}}"
+          bind:after-read="abnormalAfterRead" bind:delete="abnormalDeleteImg" upload-text="上传图片" data-index="{{index}}" 
+          show-upload="{{item.abnormalList.length<1}}"
+        />
+        <textarea class="remarkArea" placeholder="备注" value="{{item.remark}}" data-key="remark" data-index="{{index}}" bindinput="inputSetItemDataDefault" disabled="{{disabled}}"></textarea>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
+
+<textarea class="remarkArea" placeholder="备注" value="{{info.submitRemark}}" data-key="submitRemark" bindinput="inputSetDataDefault" disabled="{{disabled}}"></textarea>
+
+<view class="footerBtn" wx:if="{{!disabled}}">
+  <button bindtap="submit">提交</button>
+</view>
+</block>
+
+
+<!-- 评审完成 -->
+<block wx:if="{{showFinish}}">
+  <view class="finishPage">
+    <van-icon name="checked" />
+    <view class="tipText">提交成功</view>
+    <view class="con">
+      <view class="item clearfix">
+        <text class="label fl">线路名称</text>
+        <text class="fr">{{info.routeName}}</text>
+      </view>
+      <view class="item clearfix">
+        <text class="label fl">司机名称</text>
+        <text class="fr">{{format.formatTo_(info.driverName)}}</text>
+      </view>
+      <view class="item clearfix">
+        <text class="label fl">车头号码</text>
+        <text class="fr">{{format.formatTo_(info.plateNumber)}}</text>
+      </view>
+      <view class="item clearfix">
+        <text class="label fl">挂车号码</text>
+        <text class="fr">{{format.formatTo_(info.trailerNumber)}}</text>
+      </view>
+    </view>
+    <view class="finishView">
+      <button bindtap="back">完成</button>
+    </view>
+  </view>
+</block>

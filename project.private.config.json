@@ -1,0 +1,148 @@
+{
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/registerDriver/registerDriver",
+          "pathName": "pages/registerDriver/registerDriver",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "driver/costCapacity/costCapacity/costCapacity",
+          "pathName": "driver/costCapacity/costCapacity/costCapacity",
+          "query": "id=undefined",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/task/truckingDetail/truckingDetail",
+          "pathName": "driver/task/truckingDetail/truckingDetail",
+          "query": "waybillId=1213",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/camera/camera",
+          "pathName": "pages/camera/camera",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/task/checkAndUploadKM/checkAndUploadKM",
+          "pathName": "driver/task/checkAndUploadKM/checkAndUploadKM",
+          "query": "waybillId=1200&type=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/vehicleCheck/vehicleCheckManage/vehicleCheckManage",
+          "pathName": "driver/vehicleCheck/vehicleCheckManage/vehicleCheckManage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/task/shortBarge/shortBarge",
+          "pathName": "driver/task/shortBarge/shortBarge",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/task/todoTasks/todoTasks",
+          "pathName": "driver/task/todoTasks/todoTasks",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/costCapacity/costCapacityList/costCapacityList",
+          "pathName": "driver/costCapacity/costCapacityList/costCapacityList",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/vehicleRepairCost/vehicleRepairCost/vehicleRepairCost",
+          "pathName": "driver/vehicleRepairCost/vehicleRepairCost/vehicleRepairCost",
+          "query": "id=undefined",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/costCapacity/costCapacityList/costCapacityList",
+          "pathName": "driver/costCapacity/costCapacityList/costCapacityList",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/costCapacity/costCapacity/costCapacity",
+          "pathName": "driver/costCapacity/costCapacity/costCapacity",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "driver/vehicleCheck/vehicleCheckDetail/vehicleCheckDetail",
+          "pathName": "driver/vehicleCheck/vehicleCheckDetail/vehicleCheckDetail",
+          "query": "waybillId=983",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "supplier/vehicle/vehicleMonitor/vehicleMonitor",
+          "pathName": "supplier/vehicle/vehicleMonitor/vehicleMonitor",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "supplier/capacity/addCapacity/addCapacity",
+          "pathName": "supplier/capacity/addCapacity/addCapacity",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "supplier/bid/bidManage/bidManage",
+          "pathName": "supplier/bid/bidManage/bidManage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "driver/vehicleCheck/vehicleCheckManage/vehicleCheckManage",
+          "pathName": "driver/vehicleCheck/vehicleCheckManage/vehicleCheckManage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "driver/task/todoTasks/todoTasks",
+          "pathName": "driver/task/todoTasks/todoTasks",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "supplier/device/deviceHome/deviceHome",
+          "pathName": "supplier/device/deviceHome/deviceHome",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "supplier/jobReg/jobRegManage/jobRegManage",
+          "pathName": "supplier/jobReg/jobRegManage/jobRegManage",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "eteSupplier"
+}

@@ -1,0 +1,52 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<van-search value="{{ value }}" bind:change="search" placeholder="输入关键字模糊搜索线路" />
+<image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+<scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1" bindscrolltolower="scrolltolowerHandler">
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="index" bindtap="toOrderDetail" data-item="{{item}}">
+      <view class="inner">
+        <view class="title clearfix">
+          <view class="router fl">{{item.routeName}}</view>
+          <view class="state state5" wx:if="{{item.orderType == 2}}">往返</view>
+        </view>
+        <view class="info">
+          <view>计划单位：<text class="text">{{item.planCompanyName}}</text></view>
+          <view>起始时间：<text class="text">{{item.startDate}}</text></view>
+          <view>结束时间：<text class="text">{{format.formatTo_(item.endDate)}}</text></view>
+        </view>
+      </view>
+      <view class="operate clearfix">
+        <view class="time fl">剩余计划数：<text class="red">{{item.planUnCount}}</text></view>
+        <!-- <button class="btn fr" type="warn" catchtap="showDialog" data-item="{{item}}" disabled="{{item.inWaySum>0}}">领单</button> -->
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class="popup" wx:if="{{showDialog}}">
+  <view class="popup_bj" bindtap="hideDialog"></view>
+  <view class="dialog">
+    <view class="title">
+      <view>您正在操作领单，请确定</view>
+      <view>每次只能领一单，完成之前都不可再领单</view>
+    </view>
+    <view class="con">
+      <text>剩余计划数：{{planUnCount}}</text>
+      <input type="text" placeholder="请输入领取数量" value="{{planCount}}" bindinput="inputSetPlanCount" disabled="{{iptDisabled}}" class="{{iptDisabled?'disabled':''}}"></input>
+    </view>
+    <view class="btns clearfix">
+      <button class="fl" bindtap="hideDialog">取消</button>
+      <button class="fl red" bindtap="claimOrder">领单并出车</button>
+    </view>
+  </view>
+</view>
+
+<!-- 提示 -->
+<alert isshow="{{isshowAlert}}" class="alertCompnent" title="提示" bind:closealert="cancelAlert" aStyle="width:600rpx;">  
+  <view class="content" style="line-height: 150rpx;text-align: center;">
+    获取定位失败，请授权定位后再操作。
+  </view>
+  <view class="bottom clearfix">
+    <button bindtap="cancelAlert">取消</button>
+    <button bindtap="openSetting">去授权</button>  
+  </view>
+</alert>

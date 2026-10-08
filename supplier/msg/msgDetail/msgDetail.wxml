@@ -1,0 +1,7 @@
+<view class="title">
+  <text class="fs_28">{{info.messageModelName}}}</text>
+  <text class="fr fs_20">{{info.formatCreateDate}}</text>
+</view>
+<view class="detail fs_26">
+  {{info.messageContent}}
+</view>

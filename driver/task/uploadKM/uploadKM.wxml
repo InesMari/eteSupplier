@@ -1,0 +1,42 @@
+<view class="myField">
+ <view class="item clearfix">
+  <view class="label">派车单号</view>
+  <view class="input-text right">
+    {{info.waybillNum}}
+  </view>
+ </view>
+ <view class="item clearfix">
+  <view class="label"><text class="red">*</text>表公里数（单位：km）</view>
+  <view class="input-text right">
+    <input type="number" placeholder="公里数" value="{{info.mileage}}" data-key="mileage" bindinput="inputSetDataDefault"></input>
+  </view>
+ </view>
+</view>
+<view class="uploadImg">
+  <view class="title">上传图片</view>
+  <view class="tip">只能上传jpg/png文件，单张图片不超过20mb</view>
+  <view class="list">
+    <view class="item">
+      <van-uploader 
+        file-list="{{ticketList}}"
+        bind:after-read="afterRead" bind:delete="deleteImg" upload-text="上传图片" 
+        show-upload="{{ticketList.length<1}}" capture="{{['camera']}}"
+      />
+    </view>
+  </view>
+</view>
+<view class="footerBtn" bindtap="submit">
+  <button>{{info.driverOpType==1?"接单出车":"收车"}}</button>
+</view>
+
+
+<!-- 提示 -->
+<alert isshow="{{isshowAlert}}" class="alertCompnent" title="提示" bind:closealert="cancelAlert" aStyle="width:600rpx;">  
+  <view class="content" style="line-height: 150rpx;text-align: center;">
+    获取定位失败，请授权定位后再操作。
+  </view>
+  <view class="bottom clearfix">
+    <button bindtap="cancelAlert">取消</button>
+    <button bindtap="openSetting">去授权</button>  
+  </view>
+</alert>

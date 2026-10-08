@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "竞价",
+  "usingComponents": {
+    "alert":"/common/components/alert/alert"          
+  }
+}

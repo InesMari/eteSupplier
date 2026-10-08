@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "运力调度",
+  "usingComponents": {
+    "headerRemind":"/common/components/header-remind/headerRemind",
+    "ec-canvas": "/supplier/ec-canvas/ec-canvas"
+  }
+}

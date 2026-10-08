@@ -1,0 +1,14 @@
+<van-cell-group style="{{type==2?'pointer-events:none':''}}">
+  <van-field placeholder="员工名称" label="员工名称" value="{{info.userName}}" data-key="userName" bindinput="inputSetData" />
+  <van-field type="number" placeholder="登录手机号" label="登录手机号" value="{{info.billId}}" data-key="billId" bindinput="inputSetData" />
+  <van-field placeholder="员工邮箱" label="员工邮箱" value="{{info.email}}" data-key="email" bindinput="inputSetData" />
+  <!-- <van-field wx:if="{{type==2}}" placeholder="登录密码" label="登录密码" value="{{info.password}}" data-key="password" bindinput="inputSetData" /> -->
+  <view wx:if="{{type!=2}}" bindtap="resetAlert">  
+    <van-field type="{{psSee?'text':'password'}}" placeholder="登录密码" label="登录密码" value="{{info.password}}" data-key="password" bindinput="inputSetData" icon="{{psSee?'eye-o':'closed-eye'}}" bind:click-icon="psSeeChange" />
+    <van-field type="{{cpsSee?'text':'password'}}" placeholder="确认密码" label="确认密码" value="{{info.confirmPassword}}" data-key="confirmPassword" bindinput="inputSetData" icon="{{cpsSee?'eye-o':'closed-eye'}}" bind:click-icon="cpsSeeChange" />
+  </view>
+</van-cell-group>
+
+<view class="footerBtn" wx:if="{{type!=2}}">
+  <button bindtap="submit">提交</button>
+</view>

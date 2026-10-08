@@ -1,0 +1,4 @@
+.myField .item .label{
+  min-width: 164rpx;
+  max-width: 164rpx;
+}

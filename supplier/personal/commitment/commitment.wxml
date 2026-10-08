@@ -1,0 +1,22 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="box">
+    <view class="content">
+        <view class="content-h1">用户协议</view>
+        <view class="content-h5">甲方：<text>广东易迁易物流科技有限公司</text></view>
+        <view class="content-h5">联系地址：<text>广州市黄埔区光谱中路11号2栋2单元1003房</text></view>
+        <view class="content-h5">联系方式：<text>020-32633382</text></view>
+        <view class="content-h5">乙方：<text class="red">{{format.formatTo_(info.supplierName)}}</text></view>
+        <view class="content-h5">身份证号码：<text class="red">{{format.formatTo_(info.credentialNumber)}}</text></view>
+        <view class="content-h5">联系地址：<text class="red">{{format.formatTo_(info.address)}}</text></view>
+        <view class="content-h5">联系方式：<text class="red">{{format.formatTo_(info.billId)}}</text></view>
+        <view class="content-p">鉴于：</view>
+        <view class="content-p">甲方已与乙方签订了《运输服务协议》（下称“协议”），现乙方委托第三方收取该协议项下约定的运费，甲方向第三方直接支付运费，乙方承诺并保证第三方账户可正常收款，甲方支付运费的方式不存在任何问题。乙方在使用本平台之前，已阅读并同意本协议全部内容，自乙方开始使用本协议并在平台上勾选同意被协议约定后，本协议立即生效。</view>
+        <view class="content-p">现经甲乙双方协商一致，订立本协议，以资信守：</view>
+        <view class="content-p">1、本账号是乙方在易迁易平台上注册的账号，乙方确认本账户信息无误。</view>
+        <view class="content-p">2、根据《运输服务协议》约定，甲方应向乙方支付相应金额的运费。乙方现提供第三方银行账户信息，委托第三方领取运费。</view>
+        <view class="content-p">3、乙方保证甲方按照约定向乙方提供的第三方账户支付运费后，即正常履行了协议项下要求支付运费的义务，不存在任何违约行为，亦不会因此承担任何责任；如本次运费按照约定向第三方支付后，其他任何第三方向甲方主张要求另外支付运费等情形，由乙方自行承担全部责任，如因本协议导致甲方产生损失的，乙方承担全部赔偿责任。</view>
+        <view class="content-p">4、乙方确认，第三方收款账户不存在任何问题，且第三方无权享有甲乙双方签订的《运输服务协议》中的任何权利。</view>
+        <view class="content-p">5、上述条款是乙方在充分了解相关法律法规并与甲方充分沟通丙协商一致后达成的合意，乙方确认对上述内容不存在重大误解或显示公平的情形。</view>
+        <view class="content-p red">6、因本承诺函所产生的争议，双方协商不能解决的，应将争议提交至甲方所在地法院诉讼解决，败诉方并承担胜诉方为解决本争议支付的律师费、差旅费、诉讼费、保全费及保险费、文印费等。</view>
+    </view>
+</view>

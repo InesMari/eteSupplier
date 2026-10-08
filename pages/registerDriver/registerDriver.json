@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "司机注册",
+  "usingComponents": {
+    "popover": "/common/components/popover/popover"
+  }
+}

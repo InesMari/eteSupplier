@@ -1,0 +1,29 @@
+
+<view class="contain">
+  <view class="title">器具回收</view>
+  <view class="list clearfix">
+    <view  class="item" bindtap="toDeviceHis">
+      <image src="/common/images/i_14.png"></image>
+      <view class="name">器具回收记录</view>
+      <view class="explain">查看所有器具回收记录</view>
+    </view>
+    <view  class="item" bindtap="toDeviceRecovery">
+      <image src="/common/images/i_15.png"></image>
+      <view class="name">新增器具回收</view>
+      <view class="explain">新增器具回收</view>
+    </view>
+  </view>
+  <view class="title">器具整理</view>
+  <view class="list clearfix">
+    <view  class="item" bindtap="toDeviceArrangeHis">
+      <image src="/common/images/i_16.png"></image>
+      <view class="name">器具整理记录</view>
+      <view class="explain">查看所有器具整理记录</view>
+    </view>
+    <view  class="item" bindtap="toDeviceArrange">
+      <image src="/common/images/i_17.png"></image>
+      <view class="name">新增整理登记</view>
+      <view class="explain">登记您去客户地的器具</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<van-search value="{{ value }}" bind:change="search" placeholder="输入模糊关键字：派车单号/客户名称/线路名称/车型" />
+<view class="filter clearfix">
+  <picker class="fl" mode="selector" range="{{dateTypeList}}" bindchange="dateTypeChange" range-key="codeName" value="{{dateTypeIndex}}">
+    <view wx:if="{{dateTypeList.length !=0 &&dateTypeIndex!=null}}">
+      {{dateTypeList[dateTypeIndex].codeName}}
+      <van-icon class="arrow-down" name="arrow-down" />
+    </view>
+  </picker>
+  <view class="datePicker fl">
+    <picker wx:if="{{dateTypeIndex==0}}" mode="date" value="{{info.startDate}}" bindchange="bindDateChange" data-key="startDate">
+      <view wx:if="{{info.startDate}}">
+        {{info.startDate}}
+        <van-icon class="close" name="close" catchtap="clearDate" />
+      </view>
+      <view wx:else>请选择日期<van-icon class="arrow-down" name="arrow-down" /></view>      
+    </picker>
+    <monthPicker wx:if="{{dateTypeIndex==1}}" bind:change="monthChange"></monthPicker>
+  </view>
+  <view class="orderNums fr">总订单数：<text class="red">{{orderNumbers}}</text></view>
+</view>
+<image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+<scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1" bindscrolltolower="scrolltolowerHandler">
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="index">
+      <view class="inner">
+        <view class="title clearfix">
+          <view class="router fl">{{item.routeName}}</view>
+        </view>
+        <view class="info">
+          <view>运输车辆：<text class="text">{{item.plateNumber}}  {{item.vehicleTypeName}}  {{item.vehicleLengthName}}</text></view>
+          <view>派车单来源：<text class="text">{{item.tenantName}}</text></view>
+          <view wx:if="{{item.dispatchType != 9}}">要求运作时间：<text class="text">{{format.formatTo_(item.startWorkDate)}}</text></view>
+          <view wx:if="{{item.dispatchType == 9}}">要求送达时间：<text class="text">{{format.formatTo_(item.startWorkDate)}}</text></view>
+        </view>
+      </view>
+      <view class="operate clearfix">
+        <button class="btn fr" bindtap="toTruckingDetail" data-item="{{item}}">查看详情</button>
+      </view>
+    </view>
+  </view>
+</scroll-view>

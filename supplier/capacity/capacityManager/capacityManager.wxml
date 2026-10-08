@@ -1,0 +1,47 @@
+<van-tabs active="{{active}}" bind:change="onChange">
+  <van-tab title="当前运力"></van-tab>
+  <van-tab title="历史运力"></van-tab>
+</van-tabs>
+<block wx:if="{{info.loadHistory!=1}}">
+<view class="innerTab">
+  <view class="inner">
+    <view class="{{isshowChart?'active':''}}" bindtap="changeShow" data-type="1">图形</view>
+    <view class="{{isshowChart?'':'active'}}" bindtap="changeShow" data-type="2">列表</view>
+  </view>
+</view>
+<headerRemind wx:if="{{info.loadHistory!=1}}">运力总数：{{schedule.vehicleScheduleTotal}}，未匹配：{{schedule.vehicleScheduleUnMatch}}，已匹配：{{schedule.vehicleScheduleMatch}}，匹配率：{{schedule.matchRate}}</headerRemind>
+</block>
+<view wx:if="{{isshowChart && info.loadHistory!=1}}" style="background: #fff;">
+  <ec-canvas class="mychart" height="300rpx" canvas-id="mychart-bar" ec="{{ bar }}"></ec-canvas>
+  <ec-canvas class="myPiechart" height="500rpx" canvas-id="mychart-pie" ec="{{ pie }}"></ec-canvas>
+</view>
+<block wx:if="{{!isshowChart || info.loadHistory==1}}">
+<van-search value="{{ value }}" bind:change="search" placeholder="搜索城市、车牌、车长" />
+<view style="background: #fff;padding-top: 20rpx;" wx:if="{{info.loadHistory==1}}">
+  <ec-canvas height="300rpx" canvas-id="mychart-bar" ec="{{ barHis }}"></ec-canvas>
+</view>
+<image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+<scroll-view class="scorll {{info.loadHistory==1?'minHeight':''}}" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1" bindscrolltolower="scrolltolowerHandler">
+  <view class="comList">
+    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0 }}" wx:for="{{list}}" wx:key="{{index}}" >
+      <view class="clearfix item" slot="" bindtap="toDetail" data-id="{{item.id}}" data-state="{{item.authStateInternal}}" >
+        <view class="header">
+          <image mode="widthFix" src="/common/images/vehicleHeader.png"></image>
+          <view class="match">{{item.isMatch}}</view>
+        </view>
+        <view class="info">
+          <view>车牌：{{item.plateNumber}}</view>
+          <view>车型：{{item.vehicleTypeName}}</view>
+          <view>车长：{{item. vehicleLengthName}}</view>
+          <view>预计到达起始地时间：{{item.scheduleTime}}</view>
+          <view>线路始终城市：{{item.beginEndCity}}</view>
+        </view>
+      </view>
+    </van-swipe-cell>
+  </view>
+</scroll-view>
+</block>
+
+<view class="footerBtn">
+  <button bindtap="toAddCapacity">上报运力</button>
+</view>

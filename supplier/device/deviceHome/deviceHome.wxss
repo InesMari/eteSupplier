@@ -1,0 +1,67 @@
+
+page{
+  background: #f1f2f5;
+}
+.contain{
+  padding: 24rpx 30rpx;
+}
+.title{
+  position: relative;
+  line-height: 30rpx;
+  font-size: 28rpx;
+  padding-left: 28rpx;
+  margin: 20rpx 0px;
+}
+.title::after{
+  content: "";
+  position: absolute;
+  height: 30rpx;
+  width: 8rpx;
+  background-color: #E60012;
+  top: 0;
+  left: 4rpx;
+}
+/* 菜单 */
+.list .item{
+  background: #fff;
+  border-radius: 18rpx;
+  text-align: center;
+  width: 48%;
+  margin-right: 4%;
+  margin-bottom: 30rpx;
+  padding: 30rpx 0;
+  float: left;
+  position: relative;
+}
+.list .item:nth-child(even){
+  margin-right: 0;
+}
+.list .item image{
+  width: 93px;
+  height: 93px;
+  margin:0 auto;
+}
+.list .item .name{
+  font-weight: Regular;
+  margin:24rpx 0;
+  font-size: 32rpx;
+  line-height: 1;
+}
+.list .item .explain{
+  font-size: 24rpx;
+  line-height: 1;
+  color: #999;
+}
+.list .item .tip{
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  background: red;
+  color: #fff;
+  height: 35rpx;
+  width: 35rpx;
+  border-radius: 50%;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  text-align: center;
+}

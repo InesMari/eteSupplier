@@ -1,0 +1,45 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<van-search value="{{ value }}" bind:change="search" placeholder="输入车牌号模糊搜索" />
+<van-tabs id="tabs" active="{{active}}" bind:change="onChange" ellipsis="{{false}}">
+  <van-tab title="全部"></van-tab>
+  <van-tab title="未审核"></van-tab>
+  <van-tab title="审核通过"></van-tab>
+  <van-tab title="审核不通过"></van-tab>
+  <van-tab title="未付款"></van-tab>
+  <van-tab title="部分付款"></van-tab>
+  <van-tab title="全部付款"></van-tab>
+</van-tabs>
+<image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+<scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1" bindscrolltolower="scrolltolowerHandler">
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="index" bindtap="toCostCapacity" data-item="{{item}}">
+      <view class="inner">
+        <view class="title clearfix">
+          <view class="router fl">{{item.plateNumber}}</view>
+          <view class="state {{item.verifyState==0?'state0':''}} {{item.verifyState==1?'state1':''}} {{item.verifyState==2?'state2':''}} {{item.verifyState==3?'state3':''}} {{item.verifyState==5?'state5':''}}">
+            {{item.verifyStateName}}
+          </view>
+        </view>
+        <view class="info clearfix">
+          <view>日期：<text class="text">{{format.formatTo_(item.feeDate)}}</text></view>
+          <view>费用类型：<text class="text">{{format.formatTo_(item.feeTypeName)}}</text></view>
+          <view>支付类型：<text class="text">{{format.formatTo_(item.costPayTypeName)}}</text></view>
+          <view>付款状态：<text class="text">{{format.formatTo_(item.payStateName)}}</text></view>
+          <view>里程数(km)：<text class="text">{{format.formatToZero(item.mileage)}}</text></view>
+          <view>数量：<text class="text">{{format.formatToZero(item.num)}}</text></view>
+          <view>单位：<text class="text">{{format.formatTo_(item.unit)}}</text></view>
+          <view>金额：<text class="text">{{format.formatToZero(item.fee)}}</text></view>
+          <view>费用合计：<text class="text">{{format.formatToZero(item.totalFee)}}</text></view>
+          <view wx:if="{{item.verifyState == 2}}" style="width: 100%;">不通过原因：<text class="text">{{format.formatTo_(item.verifyRemark)}}</text></view>
+        </view>
+      </view>
+      <view class="operate clearfix" wx:if="{{item.verifyState != 1}}">
+        <button size="mini" type="warn" class="fr" catchtap="toDel" data-item="{{item}}">删除</button>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="footerBtn">
+  <button bindtap="toCostCapacity">新增</button>
+</view>

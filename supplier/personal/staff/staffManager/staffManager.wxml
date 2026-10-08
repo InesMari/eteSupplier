@@ -1,0 +1,22 @@
+<van-search value="{{ value }}" bind:change="search" placeholder="搜索员工" />
+<image mode="widthFix" wx:if="{{isRefresh}}" class="loading-icon" src="/common/images/loading.gif"></image>
+<scroll-view class="scorll" scroll-y="{{true}}" bindscrolltoupper="toupper" upper-threshold="1"
+  bindscrolltolower="scrolltolowerHandler">
+  <view class="comList">
+    <view class="clearfix item" wx:for="{{list}}" wx:key="{{index}}" bindtap="toDetail" data-id="{{item.staffId}}"
+      data-state="{{item.authStateInternal}}">
+      <view class="header">
+        <image src="/common/images/staffHeader.png"></image>
+      </view>
+      <view class="info">
+        <view class="name" style="line-height:40rpx;">{{item.userName}}</view>
+        <view class="phone">{{item.billId}}</view>
+      </view>
+      <button size="mini" type="primary" class="edit" catchtap="toEdit" data-id="{{item.staffId}}">修改</button>
+      <button size="mini" type="warn" class="del" catchtap="toDel" data-item="{{item}}">删除</button>
+    </view>
+  </view>
+</scroll-view>
+<view class="footerBtn">
+  <button bindtap="toAdd">新增员工</button>
+</view>

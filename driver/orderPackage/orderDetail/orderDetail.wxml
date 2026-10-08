@@ -1,0 +1,121 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="contain">
+  <view class="myField">
+    <view class="item clearfix" wx:if="{{info.vehicleId<0}}">
+      <view class="label">车牌号</view>
+      <view class="input-text right">
+        <input type="text" placeholder="请输入车牌号" value="{{plateNumber}}" bindinput="inputSetPlateNumber"></input>
+      </view>
+    </view>
+    <view class="item clearfix" wx:if="{{info.supplierList}}">
+      <view class="label">供应商</view>
+      <view class="input-text right">
+        <picker mode="selector" range="{{info.supplierList}}" bindchange="supplierChange"
+          range-key="supplierName" value="{{supplierIndex}}">
+          <view wx:if="{{info.supplierList.length !=0 &&supplierIndex!=null}}" style="padding-right: 40rpx;">
+            {{info.supplierList[supplierIndex].supplierName}}
+          </view>
+          <view style="color:#c8c9cc;padding-right: 40rpx;" wx:else>请选择供应商</view>
+          <van-icon name="arrow-down" class="arrow-down" />
+        </picker>
+      </view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">订单包号</view>
+      <view class="input-text right">{{info.orderPlan.planNum}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">计划单位</view>
+      <view class="input-text right">{{info.orderPlan.planCompanyName}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">剩余计划数</view>
+      <view class="input-text right">{{info.orderPlan.planUnCount}}</view>
+    </view>
+  </view>
+</view>
+<view class="contain" style="margin:0;">
+  <scroll-view class="opteraList" scroll-x="true">
+    <view class="item {{item.id==info.currentWork.id?'active':''}}" bindtap="workChange" data-item="{{item}}" wx:for="{{info.workData}}" wx:key="index">{{item.workName}}</view>
+  </scroll-view>
+  <!-- <view class="optera clearfix" wx:if="{{info.waybillState==2}}">
+    <view class="item clearfix" wx:for="{{info.currentWork.nodeList}}" wx:key="index">
+      <button bindtap="nodeOperation" data-item="{{item}}" data-index="{{index}}" class="{{item.sts==1?'disabled':''}}">{{item.nodeName}}</button>
+      <view wx:if="{{item.workDate}}">{{format.formatEmpty(item.workDate)}}</view>
+    </view>
+  </view> -->
+</view>
+<view class="contain">
+  <view class="wayTitle">作业点信息</view>
+  <view class="myField">
+    <view class="item clearfix">
+      <view class="label">作业地址</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.workAddressStr)}}</view>
+    </view> 
+    <view class="item clearfix">
+      <view class="label">联系人</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.linkmanName)}}</view>
+    </view> 
+    <view class="item clearfix">
+      <view class="label">联系手机</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.bill)}}</view>
+    </view> 
+    <view class="item clearfix">
+      <view class="label">联系电话</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.phone)}}</view>
+    </view> 
+  </view>
+</view>
+<view class="goods">
+  <view class="wayTitle">
+    <text>货物清单</text>
+  </view>
+  <view class="content">
+    <view class="total">
+      <view class="item">
+        <view>件数</view>
+        <view>{{info.orderPlan.goodsCountSum}}</view>
+      </view>
+      <view class="item">
+        <view>重量（KG）</view>
+        <view>{{info.orderPlan.goodsWeightSum}}</view>
+      </view>
+      <view class="item">
+        <view>体积（m³）</view>
+        <view>{{info.orderPlan.goodsVolumeSum}}</view>
+      </view>
+    </view>
+    <view class="detail" wx:if="{{isshowPickupGoodsDetail}}">
+      <view class="item" wx:for="{{info.goodsData}}">
+        <view class="title">{{item.goodsName}}</view>
+        <view class="inner clearfix">
+          <view>规格：{{format.formatTo_(item.goodsModel)}}</view>
+          <view>件数：{{format.formatToZero(item.goodsCount)}}件</view>
+          <view>包装：{{format.formatTo_(item.packingTypeName)}}</view>
+          <view>重量：{{format.formatToZero(item.goodsWeight)}}kg</view>
+          <view>类别：{{format.formatTo_(item.className)}}</view>
+          <view>体积：{{format.formatToZero(item.goodsVolume)}}m³</view>
+        </view>
+      </view>
+    </view>
+    <view class="showmore" bindtap="showPickupGoodsDetail">货物明细
+      <van-icon class="arrow" name="arrow-down" wx:if="{{!isshowPickupGoodsDetail}}" />
+      <van-icon class="arrow" name="arrow-up" wx:if="{{isshowPickupGoodsDetail}}" />
+    </view>
+  </view>
+</view>
+<view class="footerBtn" bindtap="getLocation">
+  <button>领单并出车</button>
+</view>
+
+
+<!-- 提示 -->
+<alert isshow="{{isshowAlert}}" class="alertCompnent" title="提示" bind:closealert="cancelAlert" aStyle="width:600rpx;">  
+  <view class="content" style="line-height: 150rpx;text-align: center;">
+    获取定位失败，请授权定位后再操作。
+  </view>
+  <view class="bottom clearfix">
+    <button bindtap="cancelAlert">取消</button>
+    <button bindtap="openSetting">去授权</button>  
+  </view>
+</alert>

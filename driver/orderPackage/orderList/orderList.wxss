@@ -1,0 +1,65 @@
+@import '../../task/todoTasks/todoTasks.wxss';
+
+
+.operate{
+  line-height: 56rpx;
+}
+.popup{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.popup .dialog{
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  background:#fff;
+  border-radius: 10rpx;
+  z-index: 99;
+  transform: translateY(-50%);
+}
+.popup .dialog .title{
+  padding: 20rpx;
+  text-align: center;
+  line-height: 40rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.popup .dialog .con{
+    text-align: center;
+    line-height: 52rpx;
+    padding: 30rpx 0;
+    border-top:1rpx solid #f6f6f6;
+    border-bottom:1rpx solid #f6f6f6;
+}
+.popup .dialog .con text{
+  vertical-align: top;
+  display: inline-block;
+  line-height: 80rpx;
+}
+.popup .dialog .con input{
+  display: inline-block;
+  margin-left: 30rpx;
+  height: 60rpx;
+  border: 1rpx solid #f6f6f6;
+  border-radius: 6rpx;
+  width: 200rpx;
+  padding: 10rpx 20rpx;
+  text-align: left;
+}
+.popup .dialog .con input.disabled{
+  background: #F1F2F5!important;
+}
+.popup .dialog button{
+  width: 50%;
+  background: #fff;
+  border-right: 1rpx solid #f6f6f6;
+  box-sizing: border-box;
+}
+.popup .dialog button:last-child{
+  border:none;
+}

@@ -1,0 +1,222 @@
+page{
+  padding-bottom: 100rpx;
+  background: #F1F2F5;
+}
+.contain{
+  background: #fff;
+  margin-bottom: 30rpx;
+}
+.uploadBtn{
+  padding:48rpx 30rpx 30rpx;
+}
+.uploadBtn button{
+  width: 100%;
+  color: #fff;
+  font-size: 30rpx;
+  background: #E12006;
+  border-radius: 50rpx;
+}
+.uploadBtn image{
+  width: 30rpx;
+  height: 28rpx;
+  color: #fff;
+  vertical-align: middle;
+  margin-right: 14rpx;
+  display: inline-block;
+  margin-top: -4rpx;
+}
+.opteraList {
+  white-space: nowrap;
+  padding:30rpx;
+  border-bottom: 1rpx solid #F6F6F6;
+}
+.opteraList .item{
+  display: inline-block;
+  margin-right: 70rpx;
+}
+.opteraList .item.active{
+  color: red;
+}
+.wayTitle{
+  font-size: 30rpx;
+  font-weight: bold;
+  padding: 30rpx;
+}
+.wayTitle .btn{
+  float: right;
+  color: #E60012;
+  font-size: 26rpx;
+}
+.wayTitle .btn .icon{
+  width: 24rpx;
+  margin-right: 6rpx;
+  vertical-align: bottom;
+  display: inline-block;
+}
+.optera{
+  padding:30rpx 108rpx;
+}
+.optera .item{
+  float: left;
+}
+.optera .item:last-child{
+  float: right;
+}
+.optera button{
+  border-radius: 8rpx;
+  width: 226rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border:1rpx solid #ED3F31;
+  text-align: center;
+  font-size: 28rpx;
+  color: #E12006;
+  background: #fff;
+}
+.optera button.disabled{
+  color: #999999;
+  border-color: #C5C5C5;
+  pointer-events: none;
+}
+.optera .item view{
+  width: 226rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.van-uploader__preview{
+  margin: 0 20rpx 20rpx 0!important;
+}
+/* 货物信息 */
+.goods {
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.goods .total{
+  display: flex;
+  border-bottom:1rpx solid #F6F6F6;
+  padding-bottom:30rpx;
+}
+.goods .total .item{
+  flex: 1;
+  -webkit-flex:1;
+  text-align: center;
+}
+.goods .total .item>view{
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1;
+}
+.goods .total .item>view:first-child{
+  margin-bottom: 32rpx;
+}
+.goods .detail{
+  
+}
+.goods .detail .item{
+  border-bottom:1rpx solid #F6F6F6;
+}
+.goods .detail .item:last-child{
+  border:none;
+}
+.goods .detail .title{
+  margin:24rpx 0;
+  padding:0 30rpx;
+}
+.goods .detail .inner{
+  padding:0 30rpx;
+}
+.goods .detail .inner>view{
+  float: left;
+  width: 40%;
+  margin-bottom: 20rpx;
+  font-size:28rpx;
+  color: #666;
+}
+.goods .detail .inner>view:nth-child(odd){
+  width: 60%;
+}
+.showmore{
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #E60012;
+}
+.showmore .arrow{
+  vertical-align: middle;
+  margin-left: 6rpx;
+}
+
+.waySortBtn{
+  position: fixed;
+  top: 41%;
+  right: 28rpx;
+  padding: 26rpx 20rpx;
+  background: #fff;
+  border:1rpx solid #F4F4F4;
+}
+.waySortBtn image{
+  width: 48rpx;
+  height: 42rpx;
+}
+
+
+.popup{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.popup .dialog{
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  background:#fff;
+  border-radius: 10rpx;
+  z-index: 99;
+  transform: translateY(-50%);
+}
+.popup .dialog .title{
+  padding: 20rpx;
+  text-align: center;
+  line-height: 40rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.popup .dialog .con{
+    text-align: center;
+    line-height: 52rpx;
+    padding: 30rpx 0;
+    border-top:1rpx solid #f6f6f6;
+    border-bottom:1rpx solid #f6f6f6;
+}
+.popup .dialog .con text{
+  vertical-align: top;
+  display: inline-block;
+  line-height: 80rpx;
+}
+.popup .dialog .con input{
+  display: inline-block;
+  margin-left: 30rpx;
+  height: 60rpx;
+  border: 1rpx solid #f6f6f6;
+  border-radius: 6rpx;
+  width: 200rpx;
+  padding: 10rpx 20rpx;
+  text-align: left;
+}
+.popup .dialog .con input.disabled{
+  background: #F1F2F5!important;
+}
+.popup .dialog button{
+  width: 50%;
+  background: #fff;
+  border-right: 1rpx solid #f6f6f6;
+  box-sizing: border-box;
+}
+.popup .dialog button:last-child{
+  border:none;
+}

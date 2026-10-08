@@ -1,0 +1,197 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="contain">
+  <view class="countdown clearfix">
+    <view class="router">
+      竞价倒计时<text class="red">{{info.baseInfo.eDay}}</text>天<text class="red">{{info.baseInfo.eHour}}</text>小时<text
+        class="red">{{info.baseInfo.eMin}}</text>分<text class="red">{{info.baseInfo.eSec}}</text>秒
+    </view>
+    <view class="state {{info.baseInfo.bidSts==0?'state0':''}} {{info.baseInfo.bidSts==1?'state1':''}}}">{{info.baseInfo.bidStsName}}</view>  
+  </view>
+</view>
+<view class="contain">
+  <view class="myField" wx:if="{{info.baseInfo.rfqQuoteType!=4}}">
+    <view class="item clearfix" wx:if="{{info.baseInfo.rfqQuoteType==1 || info.baseInfo.rfqQuoteType==2}}">
+      <view class="label">线路信息</view>
+      <view class="input-text">
+        {{info.baseInfo.beginAddress}}
+        <image src="/common/images/arrow.png" mode="widthFix" style="width: 30rpx;margin: 0 10rpx;"></image>
+        {{info.baseInfo.endAddress}}
+      </view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">竞价类型</view>
+      <view class="input-text">{{info.baseInfo.rfqQuoteTypeName}}</view>
+    </view>
+    <view class="item clearfix" wx:if="{{info.baseInfo.rfqQuoteType==1 || info.baseInfo.rfqQuoteType==2}}">
+      <view class="label">货物信息</view>
+      <view class="input-text">{{info.baseInfo.goodsNames}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">投标联系人</view>
+      <view class="input-text">{{info.baseInfo.linkman}}
+        <text style="margin:0 20rpx;">{{info.baseInfo.linkmanBillId}}</text>
+        <van-icon name="phone" style="color: red;" bindtap="callPhone" />
+      </view>
+    </view>
+    <view class="line" wx:if="{{info.baseInfo.rfqQuoteType==1 || info.baseInfo.rfqQuoteType==2}}">
+      <view class="lineItem">
+        <view class="start">始</view>
+        <view class="con">
+          <view class="name">{{info.baseInfo.beginAddress}}</view>
+          <view class="site">{{info.baseInfo.beginAddressStr}}</view>
+        </view>
+      </view>
+      <view class="lineItem">
+        <view class="end">终</view>
+        <view class="con">
+          <view class="name">{{info.baseInfo.endAddress}}</view>
+          <view class="site">{{info.baseInfo.endAddressStr}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="myField" wx:if="{{info.baseInfo.rfqQuoteType==4}}">
+    <view class="item clearfix">
+      <view class="label">批量询价</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">投标联系人</view>
+      <view class="input-text">{{info.baseInfo.linkman}}
+        <text style="margin:0 20rpx;">{{info.baseInfo.linkmanBillId}}</text>
+        <van-icon name="phone" style="color: red;" bindtap="callPhone" />
+      </view>
+    </view>
+    <view class="fileItem clearfix">
+      <view class="filesTitle">附件：<text class="red" style="font-size: 22rpx;">（点击下载）</text></view>
+      <view class="fileList" style="padding-left: 20rpx;">
+        <view class="file" bindtap="download" data-index="{{index}}" wx:for="{{info.secFiles}}">附件{{index+1}}：{{item.fileName}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="contain" wx:if="{{info.baseInfo.rfqQuoteType!=4}}">
+  <view class="conTitle">里程信息</view>
+  <view class="disAndTime">
+    <view class="item">
+      <view>{{info.baseInfo.predictDistance}}km</view>
+      <view>预估运输距离</view>
+    </view>
+    <view class="item">
+      <view>{{info.baseInfo.predictTimeStr}}小时</view>
+      <view>预估运输时间</view>
+    </view>
+  </view>
+</view>
+
+
+<view class="contain">
+  <view class="conTitle">作业要求</view>
+  <view class="requirement">
+    <view wx:for="{{info.requirements}}">{{index+1}}.{{item.content}}</view>
+  </view>
+</view>
+
+<view class="contain">
+  <view class="conTitle">竞价明细<text class="red" style="font-size: 24rpx;">（注：以下通用代表所有类型）</text></view>
+  <view class="detailed">
+    <!-- 整车 -->
+    <view class="table" wx:if="{{info.baseInfo.rfqQuoteType==1}}">
+      <view class="thead">
+        <view class="td" style="width:200rpx;">竞价项目</view>
+        <view class="td" style="width:120rpx;">运费单价/元</view>
+        <view class="td" style="width:80rpx;">点位费</view>
+      </view>
+      <view class="tbody" wx:for="{{info.dtls}}">
+        <view class="td">{{item.bidContentStr}}</view>
+        <view class="td">
+          <input type="text" placeholder="请输入" value="{{item.feePrice}}" data-index="{{index}}" data-key="feePrice" bindinput="inputSetDataDefaultDetail"></input>
+        </view>
+        <view class="td">
+          <text wx:if="{{item.billingType == 5}}">--</text>
+          <input wx:if="{{item.billingType != 5}}" type="text" placeholder="请输入" value="{{item.pointFee}}" data-index="{{index}}" data-key="pointFee" bindinput="inputSetDataDefaultDetail"></input>
+        </view>
+      </view>
+    </view>
+    <!-- 零担 -->
+    <view class="table" wx:if="{{info.baseInfo.rfqQuoteType==2}}">
+      <view class="thead">
+        <view class="td" style="width:150rpx;">竞价项目</view>
+        <view class="td" style="width:150rpx;">区间</view>
+        <view class="td" style="width:80rpx;">费用</view>
+      </view>
+      <view class="tbody" wx:for="{{info.dtls}}">
+        <view class="td">{{item.bidContentStr}}</view>
+        <view class="td">
+          <view class="iptView">
+            <input class="iptBorder" type="text" placeholder="0" value="{{item.rangeStart}}" data-index="{{index}}" data-key="rangeStart" bindinput="inputSetDataDefaultDetail"></input>
+            <text>-</text>
+            <input class="iptBorder" type="text" placeholder="500" value="{{item.rangeEnd}}" data-index="{{index}}" data-key="rangeEnd" bindinput="inputSetDataDefaultDetail"></input>
+          </view>
+        </view>
+        <view class="td">
+          <input type="text" placeholder="请输入" value="{{item.feePrice}}" data-index="{{index}}" data-key="feePrice" bindinput="inputSetDataDefaultDetail"></input>
+        </view>
+      </view>
+    </view>
+    <!-- 仓配 -->
+    <view class="table" wx:if="{{info.baseInfo.rfqQuoteType==3}}">
+      <view class="thead">
+        <view class="td" style="width:200rpx;">竞价项目</view>
+        <!-- <view class="td" style="width:80rpx;">车辆数</view> -->
+        <view class="td" style="width:80rpx;">单价金额</view>
+      </view>
+      <view class="tbody" wx:for="{{info.dtls}}">
+        <view class="td">{{item.bidContentStr}}</view>
+        <!-- <view class="td">
+          {{format.formatTo_(item.vehicleCount)}}
+        </view> -->
+        <view class="td">
+          <input type="text" placeholder="请输入" value="{{item.feePrice}}" data-index="{{index}}" data-key="feePrice" bindinput="inputSetDataDefaultDetail"></input>
+        </view>
+      </view>
+    </view>
+    <!-- 批量询价 -->
+    <view class="uploadFile" wx:if="{{info.baseInfo.rfqQuoteType==4}}">
+      <van-uploader bind:after-read="afterRead" upload-icon="plus" upload-text="上传附件"></van-uploader>
+      <view class="fileList">
+        <view class="file" wx:for="{{info.bidFiles}}">附件{{index+1}}：{{item.fileName}}
+          <van-icon name="clear" bindtap="delFile" data-index="{{index}}" />
+        </view>
+      </view>
+    </view>
+    <view class="iptItem">
+      <view class="label">付款账期：</view>
+      <view class="inputText">
+        <input type="text" placeholder="30天，这是指定的账期，可修改" value="{{info.baseInfo.accountPeriod}}" data-key="accountPeriod" bindinput="inputSetDataDefault"></input>
+      </view>
+    </view>
+    <view class="iptItem">
+      <view class="label">报价生效时间：</view>
+      <view class="inputText">
+        <picker mode="date" value="{{info.baseInfo.bidEffectDate}}" bindchange="bindDateChange" data-key="bidEffectDate">
+          <view wx:if="{{info.baseInfo.bidEffectDate}}">
+            {{info.baseInfo.bidEffectDate}}
+          </view>
+          <view style="color:#aaa;" wx:else>请选择生效时间</view>
+        </picker>
+      </view>
+    </view>
+    <view class="iptItem">
+      <view class="label">报价失效时间：</view>
+      <view class="inputText">
+        <picker mode="date" value="{{info.baseInfo.bidExpireDate}}" bindchange="bindDateChange" data-key="bidExpireDate">
+          <view wx:if="{{info.baseInfo.bidExpireDate}}">
+            {{info.baseInfo.bidExpireDate}}
+          </view>
+          <view style="color:#aaa;" wx:else>请选择失效时间</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="footerBtn">
+  <!-- <button bindtap="cancel" wx:if="{{info.baseInfo.bidId}}">取消</button> -->
+  <button style="background: green;" bindtap="submit">提交</button>
+</view>

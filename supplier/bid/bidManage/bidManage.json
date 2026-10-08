@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "竞价管理",
+  "usingComponents": {
+    "popover": "/common/components/popover/popover"    
+  }
+}

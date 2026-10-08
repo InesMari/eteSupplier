@@ -1,0 +1,57 @@
+<view class="pageTitle">
+  <image wx:if="{{info.info.confirmState<0||info.info.confirmState>3}}" class="bg" src="../../../common/images/detail_bg3.png"></image>
+  <image wx:if="{{info.info.confirmState==0}}" class="bg" src="../../../common/images/detail_bg0.png"></image>
+  <image wx:if="{{info.info.confirmState==1}}" class="bg" src="../../../common/images/detail_bg1.png"></image>
+  <image wx:if="{{info.info.confirmState==2}}" class="bg" src="../../../common/images/detail_bg2.png"></image>
+  <image wx:if="{{info.info.confirmState==3}}" class="bg" src="../../../common/images/detail_bg3.png"></image>
+  <view class="info">
+    <view class="route clearfix">
+      <view class="fl">整理单号：{{info.info.recordNum}}</view>
+      <view class="fr">{{info.info.confirmStateName}}</view>
+    </view>
+  </view>
+</view>
+<view class="myField">  
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>整理日期</view>
+    <view class="input-text">{{info.info.actualDate}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>作业点</view>
+    <view class="input-text">{{info.info.srcWorkName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>备注</view>
+    <view class="input-text">{{info.info.remark}}</view>
+  </view>
+  <view class="item clearfix" wx:if="{{info.info.url}}">
+    <view class="label">上传附件</view>
+    <view class="input-text">
+      <van-uploader 
+        file-list="{{receiptsList}}"
+        show-upload="{{false}}"
+        disabled="{{true}}"
+        deletable="{{false}}"
+      />
+    </view>
+  </view>
+</view>
+
+<view class="myField deviceList" wx:for="{{info.detailList}}">
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>器具名称</view>
+    <view class="input-text">{{item.name}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">器具规格</view>
+    <view class="input-text">{{item.spec}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>器具数量</view>
+    <view class="input-text">{{item.dealNum}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>客户名称</view>
+    <view class="input-text">{{item.tenantName}}</view>
+  </view>
+</view>

@@ -1,0 +1,166 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="contain">
+  <view class="myField">
+    <view class="item clearfix">
+      <view class="label">配送单号</view>
+      <view class="input-text right">{{info.baseInfo.waybillNum}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">配送状态</view>
+      <view class="input-text right">{{format.formatTo_(info.baseInfo.waybillStateName)}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">运输车辆</view>
+      <view class="input-text right">{{format.formatTo_(info.baseInfo.plateNumber)}} {{format.formatTo_(info.baseInfo.vehicleTypeName)}} {{format.formatTo_(info.baseInfo.vehicleLengthName)}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">是否加急</view>
+      <view class="input-text right">{{info.baseInfo.isUrgentName}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">是否回单</view>
+      <view class="input-text right">{{info.baseInfo.haveReceiptName}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">要求送达时间</view>
+      <view class="input-text right">{{format.formatTo_(info.baseInfo.requireDate)}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">运单备注</view>
+      <view class="input-text right">{{format.formatTo_(info.baseInfo.remark)}}</view>
+    </view>
+  </view>
+</view>
+<view class="goods">
+  <view class="wayTitle">
+    <text>货物信息</text>
+  </view>
+  <view class="content">
+    <view class="detail">
+      <view class="item" wx:for="{{info.goodsList}}">
+        <view class="title">{{item.materialNum}}</view>
+        <view class="inner clearfix">
+          <view style="width: 100%;">货主：{{format.formatTo_(item.tenantName)}}</view>
+          <view style="width: 100%;">送货地址：{{format.formatTo_(item.workAddress)}}</view>
+          <view>托数：{{format.formatTo_(item.palletNums)}}</view>
+          <view>卸货点：{{format.formatTo_(item.detailWorkName)}}</view>
+          <view>联系人：{{format.formatTo_(item.linkman)}}</view>
+          <view>联系电话：{{format.formatTo_(item.linkPhone)}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 
+
+<view class="goods">
+  <view class="wayTitle">
+    <text>回单信息</text>
+  </view>
+  <view wx:if="{{!list || list.length==0}}" 
+  style="line-height: 120rpx;text-align: center;font-size: 24rpx;color: #999;">暂无回单信息</view>
+  <view class="content imgList clearfix" style="padding: 20rpx;" wx:if="{{list.length>0}}" wx:for="{{list}}">
+    <view style="margin-bottom: 20rpx;">到货厂商：{{format.formatTo_(item.name)}}</view>
+    <van-uploader 
+      file-list="{{item.imgList}}"
+      disabled="{{true}}"
+      show-upload="{{false}}"
+      deletable="{{false}}"
+    />
+  </view>
+  <view class="uploadBtn">
+    <button bindtap="showUploadAlert" style="background: green;"><image src="../../../common/images/upload_fff.png"></image>上传回单</button>
+  </view>
+</view>
+
+<view class="footerBtn" wx:if="{{info.baseInfo.waybillState == 1}}">
+  <button bindtap="accept">接单出车</button>
+</view>
+<view class="footerBtn" wx:if="{{info.baseInfo.waybillState == 2}}">
+  <button bindtap="showAlert">确认完成</button>
+</view>
+
+
+<!-- 提示 -->
+<alert isshow="{{isshowUploadAlert}}" title="上传回单" class="alertCompnent" bind:closealert="cancelUploadAlert" aStyle="width:500rpx;">  
+  <view class="content">
+    <view class="item">
+      <view class="label" style="width: 120rpx;">配送单号：</view>
+      <view class="text">{{info.baseInfo.waybillNum}}</view>
+    </view>
+    <view class="item">
+      <view class="label" style="width: 120rpx;">到货厂商：</view>
+      <view class="text">
+        <picker mode="selector" range="{{fromTenantList}}" bindchange="fromTenantChange" range-key="fromTenantName" value="{{fromTenantIndex}}">
+          <view wx:if="{{fromTenantList.length !=0 && fromTenantIndex!=null}}">
+            {{fromTenantList[fromTenantIndex].fromTenantName}}
+          </view>
+          <view style="color:#c8c9cc;" wx:else>请选择到货厂商</view>
+          <van-icon name="arrow-down" class="arrow-down" />
+        </picker>
+      </view>
+    </view>
+    <view class="item" style="margin-top: 10rpx;">
+      <view class="label" style="width: 120rpx;">上传回单：</view>
+      <view class="text">
+        <van-uploader 
+        file-list="{{receiptsList}}"
+        bind:after-read="afterRead" bind:delete="deleteImg" upload-text="上传图片" 
+        show-upload="{{receiptsList.length<5}}"
+      />
+      </view>
+    </view>
+  </view>
+  <view class="bottom clearfix">
+    <button bindtap="cancelUploadAlert">取消</button>
+    <button bindtap="sureUpload">确定</button>  
+  </view>
+</alert>
+
+<!-- 提示 -->
+<alert isshow="{{isshowAlert}}" title="确认完成提示" class="alertCompnent" bind:closealert="cancelAlert" aStyle="width:500rpx;top:40%;">  
+  <view class="content">
+    <view class="item">
+      <view class="label">配送单号：</view>
+      <view class="text">{{info.baseInfo.waybillNum}}</view>
+    </view>
+    <view class="item">
+      <view class="label">货物总托数：</view>
+      <view class="text">{{info.baseInfo.palletNums}}</view>
+    </view>
+    <view class="item">
+      <view class="label">要求送达时间：</view>
+      <view class="text">{{format.formatTo_(info.baseInfo.requireDate)}}</view>
+    </view>
+    <view class="item" style="margin-top: 10rpx;">
+      <view class="label"><text class="red">*</text>是否返程：</view>
+      <view class="text">        
+        <van-radio-group value="{{ info.baseInfo.isReturn }}" bind:change="onRaidoChange">
+          <van-radio class="fl" style="margin:8rpx 20rpx 0 0;" name="{{1}}" icon-size="24rpx">是</van-radio>
+          <van-radio class="fl" style="margin:8rpx 20rpx 0 0;" name="{{0}}" icon-size="24rpx">否</van-radio>
+        </van-radio-group>
+      </view>
+    </view>
+    <!-- <view class="item" style="margin-top: 10rpx;" wx:if="{{info.baseInfo.isReturn==1}}">
+      <view class="label"><text class="red">*</text>返程数量：</view>
+      <view class="text">        
+        <input type="number" placeholder="请输入数量" value="{{mileage}}" bindinput="inputSetDataMileage"></input>
+      </view>
+    </view> -->    
+    <view class="item" style="margin-top: 10rpx;" wx:if="{{isTimeout}}">
+      <view class="label" style="width: 120rpx;">超时原因：</view>
+      <view class="text">
+        <picker mode="selector" range="{{timeoutReasonList}}" bindchange="timeoutReasonChange" range-key="codeName" value="{{timeoutReasonIndex}}">
+          <view wx:if="{{timeoutReasonList.length !=0 && timeoutReasonIndex!=null}}">
+            {{timeoutReasonList[timeoutReasonIndex].codeName}}
+          </view>
+          <view style="color:#c8c9cc;" wx:else>请选择超时原因</view>
+          <van-icon name="arrow-down" class="arrow-down" />
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class="bottom clearfix">
+    <button bindtap="cancelAlert">取消</button>
+    <button bindtap="sureAlert">确定</button>  
+  </view>
+</alert>

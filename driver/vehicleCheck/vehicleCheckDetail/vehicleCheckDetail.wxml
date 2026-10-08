@@ -1,0 +1,120 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+
+<view class="titleTab fw">基本信息</view>
+<view class="myField">
+  <view class="item clearfix">
+    <view class="label">派车单号：</view>
+    <view class="input-text">{{info.waybillNum}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">线路名称：</view>
+    <view class="input-text">{{info.routeName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">车牌号：</view>
+    <view class="input-text">{{info.plateNumber}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">司机姓名：</view>
+    <view class="input-text">{{info.driverName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">挂车号码</view>
+    <view class="input-text">{{format.formatTo_(info.trailerNumber)}}</view>
+  </view>
+</view>
+<block wx:if="{{info.startMileageFileUrl}}">
+<view class="titleTab fw mt_20">出车里程表照片：</view>
+<view class="myField">
+ <view class="item">
+  <view class="label" style="min-width: 310rpx;max-width: 310rpx;"><text class="red">*</text>表公里数（单位：km）</view>
+  <view class="input-text">
+    <input type="number" disabled="{{disabled}}" placeholder="公里数" value="{{info.startMileage}}"></input>
+  </view>
+ </view>
+</view>
+<view class="uploadImg">
+  <view class="list clearfix">
+    <view class="item">
+      <van-uploader 
+        file-list="{{startMileageList}}" disabled="{{disabled}}" deletable="{{!disabled}}"
+        bind:after-read="afterRead" bind:delete="deleteImg" upload-text="上传图片" 
+        show-upload="{{startMileageList.length<1}}"
+      />
+    </view>
+  </view>
+</view>
+</block>
+<block wx:if="{{info.endMileageFileUrl}}">
+<view class="titleTab fw mt_20">收车里程表照片：</view>
+<view class="myField">
+ <view class="item">
+  <view class="label" style="min-width: 310rpx;max-width: 310rpx;"><text class="red">*</text>表公里数（单位：km）</view>
+  <view class="input-text">
+    <input type="number" disabled="{{disabled}}" placeholder="公里数" value="{{info.endMileage}}"></input>
+  </view>
+ </view>
+</view>
+<view class="uploadImg">
+  <view class="list clearfix">
+    <view class="item">
+      <van-uploader 
+        file-list="{{endMileageList}}" disabled="{{disabled}}" deletable="{{!disabled}}"
+        bind:after-read="afterRead" bind:delete="deleteImg" upload-text="上传图片" 
+        show-upload="{{endMileageList.length<1}}"
+      />
+    </view>
+  </view>
+</view>  
+</block>
+<view class="titleTab fw mt_20">出车点检信息</view>
+<view class="myField checkList">
+  <view class="item clearfix" wx:for="{{info.startCheckList}}">
+    <view class="label">
+      <rich-text nodes="{{item.content}}"></rich-text>
+    </view>
+    <view class="input-text">
+      <view class="radioView">        
+        <van-radio-group value="{{ item.checkState }}" bind:change="onRaidoChange" data-key="checkState" data-index="{{index}}" disabled="{{disabled}}">
+          <van-radio name="{{1}}" shape="square" icon-size="40rpx">正常</van-radio>
+          <van-radio name="{{0}}" shape="square" icon-size="40rpx">异常</van-radio>
+        </van-radio-group>
+      </view>
+      <view class="abnormalView" wx:if="{{item.checkState == 0}}">
+        <van-uploader 
+          file-list="{{item.abnormalList}}" disabled="{{disabled}}" deletable="{{!disabled}}"
+          bind:after-read="abnormalAfterRead" bind:delete="abnormalDeleteImg" upload-text="上传图片" data-index="{{index}}" 
+          show-upload="{{item.abnormalList.length<1}}"
+        />
+        <textarea class="remarkArea" placeholder="备注" value="{{item.remark}}" data-key="remark" data-index="{{index}}" bindinput="inputSetItemDataDefault" disabled="{{disabled}}"></textarea>
+      </view>
+    </view>
+  </view>
+</view>
+<textarea class="remarkArea" placeholder="备注" value="{{info.startSubmitRemark}}" data-key="startSubmitRemark" bindinput="inputSetDataDefault" disabled="{{disabled}}"></textarea>
+
+<view class="titleTab fw mt_20">收车点检信息</view>
+<view class="myField checkList">
+  <view class="item clearfix" wx:for="{{info.endCheckList}}">
+    <view class="label">
+      <rich-text nodes="{{item.content}}"></rich-text>
+    </view>
+    <view class="input-text">
+      <view class="radioView">        
+        <van-radio-group value="{{ item.checkState }}" bind:change="onRaidoChange" data-key="checkState" data-index="{{index}}" disabled="{{disabled}}">
+          <van-radio name="{{1}}" shape="square" icon-size="40rpx">正常</van-radio>
+          <van-radio name="{{0}}" shape="square" icon-size="40rpx">异常</van-radio>
+        </van-radio-group>
+      </view>
+      <view class="abnormalView" wx:if="{{item.checkState == 0}}">
+        <van-uploader 
+          file-list="{{item.abnormalList}}" disabled="{{disabled}}" deletable="{{!disabled}}"
+          bind:after-read="abnormalAfterRead" bind:delete="abnormalDeleteImg" upload-text="上传图片" data-index="{{index}}" 
+          show-upload="{{item.abnormalList.length<1}}"
+        />
+        <textarea class="remarkArea" placeholder="备注" value="{{item.remark}}" data-key="remark" data-index="{{index}}" bindinput="inputSetItemDataDefault" disabled="{{disabled}}"></textarea>
+      </view>
+    </view>
+  </view>
+</view>
+<textarea class="remarkArea" placeholder="备注" value="{{info.endSubmitRemark}}" data-key="endSubmitRemark" bindinput="inputSetDataDefault" disabled="{{disabled}}"></textarea>

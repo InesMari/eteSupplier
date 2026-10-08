@@ -1,0 +1,224 @@
+page {
+  background: #f5f5f5;
+  padding: 0 20rpx 140rpx;
+  box-sizing: border-box;
+}
+
+.contain {
+  background: #fff;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+
+.countdown {
+  padding: 30rpx 20rpx;
+  position: relative;
+}
+
+.countdown .state {
+  line-height: 40rpx;
+  font-size: 22rpx;
+  width: 120rpx;
+  height: 40rpx;
+  background: #FFCDCD;
+  border-radius: 50rpx;
+  color: #E60012;
+  position: absolute;
+  text-align: center;
+  right: 20rpx;
+  top: 22rpx;
+}
+
+.countdown .state.state1 {
+  color: #0CCBF8;
+  background: #E6F4F9;
+}
+
+.lineItem {
+  padding: 18rpx 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.lineItem .start,
+.lineItem .end {
+  width: 40rpx;
+  height: 40rpx;
+  background: #2ec4fe;
+  color: #fff;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 50%;
+  font-size: 20rpx;
+  margin-right: 20rpx;
+}
+
+.lineItem .end {
+  background: #ec9315;
+}
+
+.lineItem .con {
+  line-height: 30rpx;
+}
+
+.lineItem .site {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.conTitle {
+  padding: 30rpx 20rpx;
+
+}
+
+.disAndTime {
+  border-top: 1rpx solid #efefef;
+  display: flex;
+}
+
+.disAndTime .item {
+  flex: 1;
+  text-align: center;
+  padding: 30rpx 0;
+  line-height: 40rpx;
+}
+
+.requirement {
+  text-align: justify;
+  padding: 0 20rpx 30rpx;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 36rpx;
+}
+
+
+.table {
+  display: table;
+  width: 100%;
+  border-left: 1rpx solid #eee;
+  border-top: 1rpx solid #eee;
+  background: #fff;
+  table-layout: fixed;
+  margin-bottom: 20rpx;
+}
+
+.table .thead {
+  background: #eef1f6;
+  display: table-row;
+}
+
+.table .tbody {
+  display: table-row;
+}
+
+.table .td {
+  display: table-cell;
+  text-align: center;
+  border-right: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  padding: 16rpx 0;
+  line-height: 32rpx;
+  font-size: 24rpx;
+  vertical-align: middle;
+}
+
+.table .td .iptView {
+  display: flex;
+  padding: 0 10rpx;
+}
+
+.table .td .iptView text {
+  width: 50rpx;
+}
+
+.table .td .iptBorder {
+  border: 1rpx solid #efefef;
+  border-radius: 6rpx;
+}
+
+.detailed {
+  padding: 0 20rpx 30rpx;
+}
+
+.iptItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.iptItem .label {
+  width: 200rpx;
+  text-align: right;
+}
+
+.iptItem .inputText {
+  flex: 1;
+}
+
+.iptItem .inputText input,
+.iptItem .inputText picker {
+  border: 1rpx solid #efefef;
+  padding: 10rpx 20rpx;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.footerBtn {
+  display: flex;
+}
+
+.footerBtn button {
+  margin: 0 30rpx;
+}
+
+.fileItem {
+  padding: 18rpx 30rpx;
+}
+
+.fileItem .filesTitle {
+  padding-bottom: 20rpx;
+}
+
+.fileList {
+  flex: 1;
+  overflow: hidden;
+}
+
+.fileList .file {
+  line-height: 60rpx;
+  border-bottom: 1rpx dashed #efefef;
+  font-size: 24rpx;
+  overflow: hidden;
+  position: relative;
+  padding-right: 40rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileList van-icon {
+  color: red;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  top: 16rpx
+}
+
+.uploadFile {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.uploadFile .fileList {
+  margin-left: 20rpx;
+}
+
+.alertCon {
+  padding: 30rpx;
+}
+
+.alertCon .title {
+  line-height: 70rpx;
+  font-weight: bold;
+}

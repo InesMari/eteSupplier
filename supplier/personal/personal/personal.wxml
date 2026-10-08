@@ -1,0 +1,42 @@
+<view class="headInfo">
+  <image class="bg" src="/common/images/personal_bg.png" mode="widthFix"></image>
+  <view class="userInfo">
+    <view class="name">{{userInfo.tenantName}}</view>
+    <view class="phone">{{userInfo.billId}}</view>
+  </view>
+  <view class="personal" bindtap="toDetail">资料管理<van-icon name="arrow" /></view>
+</view>
+<view class="myField">
+ <view class="item clearfix" bindtap="toFeeDetail">
+  <view class="label" style="max-width:initial">
+    <image class="i_fee" src="/common/images/i_fee.png"></image>
+    <text>运费明细</text>
+  </view>
+  <view class="unit fr">
+    <van-icon name="arrow" />
+  </view>
+ </view>
+</view>
+<view class="myField">
+ <view class="item clearfix" bindtap="toBankcards">
+  <view class="label" style="max-width:initial">
+    <image class="i_bank" src="/common/images/i_bank.png"></image>
+    <text>银行卡（{{cardTotal}}张）</text>
+  </view>
+  <view class="unit fr">
+    <van-icon name="arrow" />
+  </view>
+ </view>
+</view>
+<view class="myField">
+ <view class="item clearfix" bindtap="toStaffManager">
+  <view class="label" style="max-width:initial">
+    <image class="i_staff" src="/common/images/i_staff.png"></image>
+    <text>员工管理</text>
+  </view>
+  <view class="unit fr">
+    <van-icon name="arrow" />
+  </view>
+ </view>
+</view>
+<button class="exit" bindtap="toLogout">退出登陆</button>

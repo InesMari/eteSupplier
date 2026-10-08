@@ -1,0 +1,205 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="contain">
+  <view class="myField">
+    <view class="item clearfix">
+      <view class="label">派车单号</view>
+      <view class="input-text right">{{info.waybillNum}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">运单状态</view>
+      <view class="input-text right">{{info.waybillStateName}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">运输车辆</view>
+      <view class="input-text right">{{info.plateNumber}} {{info.vehicleTypeName}} {{info.vehicleLengthName}}</view>
+    </view>
+    <view class="item clearfix" wx:if="{{info.vehicleAttribution == 2}}">
+      <view class="innerItem">出车里程：{{format.formatTo_(info.startMileage)}}</view>
+      <view class="innerItem" style="text-align: center;">收车里程：{{format.formatTo_(info.endMileage)}}</view>
+      <view class="innerItem" style="text-align: right;">总里程：{{format.formatTo_(info.totalMileage)}}</view>
+    </view>
+    <!-- <view class="item clearfix">
+      <view class="label">运单备注</view>
+      <view class="input-text right">{{info.remark}}</view>
+    </view> -->
+    <view class="item clearfix" wx:if="{{info.transportationAgreementFileUrl}}">
+      <view class="label">接单声明</view>
+      <view class="input-text right">
+      <text style="color: red;margin-right: 20px;text-decoration: underline;" bindtap="downPDF">分享下载</text>
+      <text class="link" bindtap="toArgeement">查看接单声明详情</text>
+    </view>
+    </view>
+  </view>
+  <view class="uploadBtn">
+    <button bindtap="toUploadTicket" wx:if="{{info.waybillState>1}}"><image src="../../../common/images/upload_fff.png"></image>上传单据</button>
+    <button class="printBtn" bindtap="toPrintTag" wx:if="{{info.waybillState>1 && info.vehicleAttribution==2}}"><image src="../../../common/images/print.png"></image>打印回单标签</button>
+  </view>
+</view>
+<view class="contain">
+  <scroll-view class="opteraList" scroll-x="true">
+    <view class="item {{item.id==info.currentWork.id?'active':''}}" bindtap="workChange" data-item="{{item}}" wx:for="{{info.workList}}" wx:key="index">{{item.workName}}</view>
+  </scroll-view>
+  <view class="optera clearfix" wx:if="{{info.waybillState==2}}">
+    <view class="item clearfix" wx:for="{{info.currentWork.nodeList}}" wx:key="index">
+      <button bindtap="nodeOperation" data-item="{{item}}" data-index="{{index}}" class="{{item.sts==1?'disabled':''}}">{{item.nodeName}}</button>
+      <view wx:if="{{item.workDate}}">{{format.formatEmpty(item.workDate)}}</view>
+    </view>
+  </view>
+</view>
+<view class="contain">
+  <view class="wayTitle">{{info.currentWork.workType==1?'提货':'卸货'}}作业点信息
+    <view class="btn" bindtap="photoLock" wx:if="{{info.currentWork.needLockedTakePictures}}"><image class="icon" mode="widthFix" src="/common/images/photo.png"></image>上锁拍照</view>
+  </view>
+  <view class="myField">
+    <view class="item clearfix">
+      <view class="label">要求时间</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.workDate)}}</view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">作业地址</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.workAddress)}}</view>
+    </view> 
+    <view class="item clearfix">
+      <view class="label">联系人</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.linkmanName)}}</view>
+    </view> 
+    <view class="item clearfix">
+      <view class="label">联系手机</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.bill)}}</view>
+    </view> 
+    <view class="item clearfix">
+      <view class="label">联系电话</view>
+      <view class="input-text right">{{format.formatTo_(info.currentWork.phone)}}</view>
+    </view> 
+  </view>
+  <view style="padding:20rpx 30rpx">单据信息（共{{ticketList.length}}份）</view>
+  <view style="padding:0 30rpx 30rpx;">
+    <van-uploader 
+      file-list="{{ticketList}}"
+      bind:after-read="afterRead" bind:delete="deleteImg" upload-text="上传图片" 
+      show-upload="{{false}}"
+    />
+  </view>
+</view>
+<view class="goods">
+  <view class="wayTitle">
+    <text>提货货物清单</text>
+  </view>
+  <view class="content">
+    <view class="total">
+      <view class="item">
+        <view>件数</view>
+        <view>{{info.pickupGoods.goodsCountSum}}</view>
+      </view>
+      <view class="item">
+        <view>重量（KG）</view>
+        <view>{{info.pickupGoods.goodsWeightSum}}</view>
+      </view>
+      <view class="item">
+        <view>体积（m³）</view>
+        <view>{{info.pickupGoods.goodsVolumeSum}}</view>
+      </view>
+    </view>
+    <view class="detail" wx:if="{{isshowPickupGoodsDetail}}">
+      <view class="item" wx:for="{{pickupGoodsList}}">
+        <view class="title">{{item.goodsName}}</view>
+        <view class="inner clearfix">
+          <view>规格：{{format.formatTo_(item.goodsModel)}}</view>
+          <view>件数：{{item.goodsCount}}件</view>
+          <view>包装：{{format.formatTo_(item.packingTypeName)}}</view>
+          <view>重量：{{item.goodsWeight}}kg</view>
+          <view>类别：{{format.formatTo_(item.className)}}</view>
+          <view>体积：{{item.goodsVolume}}m³</view>
+        </view>
+      </view>
+    </view>
+    <view class="showmore" bindtap="showPickupGoodsDetail">货物明细
+      <van-icon class="arrow" name="arrow-down" wx:if="{{!isshowPickupGoodsDetail}}" />
+      <van-icon class="arrow" name="arrow-up" wx:if="{{isshowPickupGoodsDetail}}" />
+    </view>
+  </view>
+</view>
+
+<view class="goods">
+  <view class="wayTitle">
+    <text>卸货货物清单</text>
+  </view>
+  <view class="content">
+    <view class="total">
+      <view class="item">
+        <view>件数</view>
+        <view>{{info.deliveryGoods.goodsCountSum}}</view>
+      </view>
+      <view class="item">
+        <view>重量（KG）</view>
+        <view>{{info.deliveryGoods.goodsWeightSum}}</view>
+      </view>
+      <view class="item">
+        <view>体积（m³）</view>
+        <view>{{info.deliveryGoods.goodsVolumeSum}}</view>
+      </view>
+    </view>
+    <view class="detail" wx:if="{{isshowDeliveryGoodsDetail}}">
+      <view class="item" wx:for="{{deliveryGoodsList}}">
+        <view class="title">{{item.goodsName}}</view>
+        <view class="inner clearfix">
+          <view>规格：{{format.formatTo_(item.goodsModel)}}</view>
+          <view>件数：{{item.goodsCount}}件</view>
+          <view>包装：{{format.formatTo_(item.packingTypeName)}}</view>
+          <view>重量：{{item.goodsWeight}}kg</view>
+          <view>类别：{{format.formatTo_(item.className)}}</view>
+          <view>体积：{{item.goodsVolume}}m³</view>
+        </view>
+      </view>
+    </view>
+    <view class="showmore" bindtap="showDeliveryGoodsDetail">货物明细
+      <van-icon class="arrow" name="arrow-down" wx:if="{{!isshowDeliveryGoodsDetail}}" />
+      <van-icon class="arrow" name="arrow-up" wx:if="{{isshowDeliveryGoodsDetail}}" />
+    </view>
+  </view>
+</view>
+
+<view class="goods" wx:if="{{info.mileage.startMileage}}">
+  <view class="wayTitle">
+    <text>公里数信息</text>
+  </view>  
+  <view class="myField">
+    <view class="item clearfix">
+      <view class="label auto">起始公里数（单位：km）</view>
+      <view class="input-text right">{{info.mileage.startMileage}}</view>
+    </view>
+    <view class="item clearfix" wx:if="{{info.mileage.endMileage}}">
+      <view class="label auto">结束公里数（单位：km）</view>
+      <view class="input-text right">{{info.mileage.endMileage}}</view>
+    </view>
+    <view class="item clearfix" wx:if="{{info.mileage.totalMileage}}">
+      <view class="label auto">里程数（单位：km）</view>
+      <view class="input-text right">{{info.mileage.totalMileage}}</view>
+    </view>
+  </view>
+  <view class="imgList clearfix">
+    <image bindtap="seeBigImg" data-key="1" wx:if="{{info.mileage.startMileageFilePath}}" src="{{info.mileage.startMileageFilePath}}"></image>
+    <image bindtap="seeBigImg" data-key="2" wx:if="{{info.mileage.endMileageFilePath}}" src="{{info.mileage.endMileageFilePath}}"></image>
+  </view>
+</view>
+
+<view class="waySortBtn" bindtap="toWaySort" catchtap="toWaySort" data-item="{{info.workList}}" wx:if="{{info.waybillState==2&&info.workList.length>2}}"><image src="../../../common/images/sort.png"></image></view>
+<view class="footerBtn" wx:if="{{info.waybillState==1}}">
+  <button bindtap="toReceive" disabled="{{inWaySum>0}}">接单出车</button>
+</view>
+
+<view class="footerBtn" wx:if="{{info.waybillState==2}}">
+  <!-- <button class="primary" bindtap="apply" type="primary" wx:if="{{info.vehicleAttribution == 2}}">申请回程业务</button> -->
+  <!-- <button bindtap="nodeOperation" type="warning">收车</button> -->
+</view>
+
+<!-- 提示 -->
+<alert isshow="{{isshowAlert}}" class="alertCompnent" title="提示" bind:closealert="cancelAlert" aStyle="width:600rpx;">  
+  <view class="content" style="line-height: 150rpx;text-align: center;">
+    获取定位失败，请授权定位后再操作。
+  </view>
+  <view class="bottom clearfix">
+    <button bindtap="cancelAlert">取消</button>
+    <button bindtap="openSetting">去授权</button>  
+  </view>
+</alert>

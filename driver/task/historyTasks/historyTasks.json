@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "历史任务",
+  "usingComponents": {
+    "monthPicker":"/common/components/monthPicker/monthPicker"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "运作上报",
+  "usingComponents": {    
+    "datetimepicker": "/common/components/datetimepicker/datetimepicker"    
+  }
+}

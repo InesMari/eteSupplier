@@ -1,0 +1,30 @@
+<view class="list mt_30">
+  <view class="item clearfix {{info.itemBg}}" bindtap="toDetail">
+    <view class="bankIcon">
+      <image src="{{info.bankLogo}}"></image>
+    </view>
+    <view class="info">
+      <view class="name">{{info.bankDepositName}}</view>
+      <view class="type" wx:if="{{info.bankType==1}}">对公账号</view>
+      <view class="type" wx:if="{{info.bankType==2}}">对私账号</view>
+      <view class="card_num">{{info.bankCard}}</view>
+    </view>
+    <image class="bg" mode="aspectFit" src="{{info.itemBg}}"></image>
+  </view>
+</view>
+
+<van-cell-group>
+  <van-cell title="开户行" value="{{info.bankDepositName}}" />
+  <van-cell title="支行名称" value="{{info.bankSubName}}" />
+  <van-cell title="银行卡类型" value="对公账号" wx:if="{{info.bankType==1}}" />
+  <van-cell title="银行卡类型" value="对私账号" wx:if="{{info.bankType==2}}" />
+  <van-cell title="开户卡号" value="{{info.bankCard}}" />
+  <van-cell title="开户名字" value="{{info.bankAccountName}}" />
+  <van-cell title="纳税人识别号" value="{{info.taxpayerNum}}" wx:if="{{info.bankType==1}}" />
+  <van-cell title="身份证号" value="{{info.userPayeeCard}}" wx:if="{{info.bankType==2}}" />
+</van-cell-group>
+
+
+<view class="footerBtn">
+  <button bindtap="unbind">解<text style="margin:0 25rpx;"></text>绑</button>
+</view>

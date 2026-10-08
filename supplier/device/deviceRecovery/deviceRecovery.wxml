@@ -1,0 +1,122 @@
+
+<!-- 作业点信息 -->
+<view class="wayInfo">
+  <view class="wayTitle clearfix">
+    <text>作业点信息</text> 
+    <view class="waySort" bindtap="toWaySort" data-item="{{info.workList}}" wx:if="{{(waybillState==0||waybillState==1)&&info.workList.length>2}}">调整顺序</view>
+  </view>
+  <view class="list">
+      <view class="item clearfix">
+        <image class="state-img" src="../../../common/images/ti.png"></image>
+        <view class="content">
+          <view class="site">
+            <picker mode="selector" range="{{custWorkList}}" bindchange="custWorkChange" range-key="workName" value="{{custWorkIndex}}">
+              <view class="name">来源地</view>
+              <view wx:if="{{custWorkList.length !=0 && custWorkIndex!=null}}">
+                {{custWorkList[custWorkIndex].workName}}
+              </view>
+              <view style="color:#c8c9cc;" wx:else>选择来源地</view>
+            </picker>
+          </view>
+        </view>
+        <van-icon class="arrow" name="arrow" />
+      </view>
+      <view class="item clearfix">
+        <image class="state-img" src="../../../common/images/xie.png"></image>
+        <view class="content">
+          <view class="site">
+            <picker mode="selector" range="{{houseList}}" bindchange="houseChange" range-key="workName" value="{{houseIndex}}">
+              <view class="name">交付地</view>
+              <view wx:if="{{houseList.length !=0 && houseIndex!=null}}">
+                {{houseList[houseIndex].workName}}
+              </view>
+              <view style="color:#c8c9cc;" wx:else>选择交付地</view>
+            </picker>
+          </view>
+        </view>
+        <van-icon class="arrow" name="arrow" />
+      </view>
+  </view>
+  <view class="myField">  
+    <view class="item clearfix">
+      <view class="label"><text class="red">*</text>回收日期</view>
+      <view class="input-text">
+        <picker mode="date" value="{{info.reoveryDate}}" bindchange="bindDateChange" data-key="reoveryDate">
+          <view wx:if="{{info.reoveryDate}}">
+            {{info.reoveryDate}}
+          </view>
+          <view style="color:#c8c9cc;" wx:else>选择回收日期</view>
+        </picker>
+      </view>
+    </view>
+    <view class="item clearfix">
+      <view class="label"><text class="red">*</text>备注</view>
+      <view class="input-text">
+        <input type="text" placeholder="请输入备注信息" value="{{info.remark}}" data-key="remark" bindinput="inputSetDataDefault"></input>      
+      </view>
+    </view>
+    <view class="item clearfix">
+      <view class="label">上传附件</view>
+      <view class="input-text">
+        <van-uploader 
+          file-list="{{receiptsList}}"
+          bind:after-read="afterRead" bind:delete="deleteImg"
+          show-upload="{{receiptsList.length<1}}"
+        />
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view class="myField deviceList" wx:for="{{info.deviceList}}">
+  <van-icon name="clear" bindtap="delDevice" data-index="{{index}}" wx:if="{{info.deviceList.length>1}}" />
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>器具名称</view>
+    <view class="input-text" bindtap="showDevicePopover" data-index="{{index}}">
+      <view wx:if="{{item.deviceName}}">
+        {{item.deviceName}}
+      </view>
+      <view style="color:#c8c9cc;" wx:else>请选择器具</view>
+      <van-icon name="arrow-down" class="arrow-down" />
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">器具规格</view>
+    <view class="input-text">{{item.spec}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>器具数量</view>
+    <view class="input-text">
+      <input type="number" placeholder="请输入器具数量" value="{{item.dealNum}}" data-key="dealNum" data-index="{{index}}" bindinput="inputSetDataDevice"></input>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>客户名称</view>
+    <view class="input-text">
+      <picker mode="selector" range="{{tenantList}}" bindchange="tenantChange" data-index="{{index}}" range-key="name" value="{{item.tenantIndex}}">
+        <view wx:if="{{tenantList.length !=0 && item.tenantIndex!=null}}">
+          {{tenantList[item.tenantIndex].name}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>选择客户</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+</view>
+<view class="addView" bindtap="addDevice">+ 新增器具</view>
+
+<view class="footerBtn">
+  <button bindtap="save">确认</button>
+</view>
+
+
+<!-- 选择器具 -->
+<popover is-show="{{isShowDevicePopover}}">
+  <view class="filter-container">
+    <input type="text" placeholder="请输入器具名称" bindinput='searchDeviceList' value="{{deviceSearch}}"></input>
+    <scroll-view class="scrollList" scroll-y="{{true}}">
+      <view class="item" wx:for="{{deviceList}}" wx:key="{{index}}" bindtap="selectDevice" data-item="{{item}}">{{item.name}}</view>
+    </scroll-view>
+  </view>
+</popover>

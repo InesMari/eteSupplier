@@ -1,0 +1,63 @@
+<wxs src="../../../common/wxs/format.wxs" module="format"></wxs>
+<view class="myField">
+  <view class="item clearfix">
+    <view class="label">费用类型</view>
+    <view class="input-text">{{info.info.itemTypeName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">物流中心</view>
+    <view class="input-text">{{info.info.workName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">作业名称</view>
+    <view class="input-text">{{info.info.itemName}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">单位</view>
+    <view class="input-text">{{info.info.unit}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">登记时间</view>
+    <view class="input-text">{{format.formatTo_(info.info.registerDate)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">确认时间</view>
+    <view class="input-text">{{format.formatTo_(info.info.confirmDate)}}</view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">登记数量</view>
+    <view class="input-text">{{info.info.num}}</view>
+  </view>
+  <view class="item uploadImg clearfix">
+    <view class="label">操作凭证</view>
+    <view class="input-text">
+      <van-uploader 
+        file-list="{{info.operaterCertificateList}}" disabled="{{true}}" deletable="{{false}}"
+        show-upload="{{false}}"
+      />
+    </view> 
+  </view>
+  <view class="item uploadImg clearfix">
+    <view class="label">现场图片</view>
+    <view class="input-text">
+      <van-uploader 
+        file-list="{{info.scenePictureList}}"  disabled="{{true}}" deletable="{{false}}"
+        show-upload="{{false}}"
+      />
+    </view> 
+  </view>
+  <view class="putTable clearfix" wx:if="{{info.customerDetailList.length>0}}">
+    <view class="row">
+      <view class="th flex">客户名称</view>
+      <view class="th wFix">登记数量</view>
+    </view>
+    <view class="row" wx:for="{{info.customerDetailList}}">
+      <view class="flex">{{item.tenantName}}</view>
+      <view class="wFix">{{item.num}}</view>
+    </view>
+  </view>
+</view> 
+
+<view class="footerBtn" bindtap="toEdit" wx:if="{{info.info.confirmState == 0}}">
+  <button>修改</button>
+</view>

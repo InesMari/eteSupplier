@@ -1,0 +1,52 @@
+page{
+  background: #fff;
+  height: 100%;
+  padding-bottom: 0rpx;
+  box-sizing: border-box;
+}
+.scorll{
+  height: calc(100% - 200rpx);
+}
+.comList radio{
+  position: absolute;
+  top: 58rpx;
+  right: 24rpx;
+  pointer-events: none;
+}
+
+.finishPage van-icon{
+  width: 100%;
+}
+.finishPage .van-icon{
+  color: #C4F6E1;
+  margin:200rpx auto 50rpx;
+  font-size: 230rpx;
+}
+.finishPage .tipText{
+  text-align: center;
+  font-size: 30rpx;
+}
+.finishView{
+  position: fixed;
+  bottom:90rpx;
+  left: 0;
+  width: 100%;
+  padding:0 30rpx;
+  box-sizing: border-box;
+}
+.finishView button{
+  background: red;
+  line-height: 76rpx;
+  height: 76rpx;
+  width: 100%;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}
+.finishView .backText{
+  text-align: center;
+  color: #999;
+  font-size: 30rpx;
+  margin-top: 60rpx;
+}

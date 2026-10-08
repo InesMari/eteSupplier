@@ -1,0 +1,32 @@
+@import '../jobReg/jobReg.wxss';
+
+.myField{
+  padding-bottom: 30rpx;
+}
+.putTable{
+  margin:18rpx 30rpx;
+  border-left:1rpx solid #eee;
+  border-top:1rpx solid #eee;
+}
+.putTable .row{
+  display: flex;
+  height: 60rpx;
+}
+.putTable .row .th{
+  background-color: #e8e8e8;
+}
+.putTable .row>view{
+  font-size: 24rpx;
+  border-right:1rpx solid #eee;
+  border-bottom:1rpx solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0 20rpx;
+}
+.putTable .row .flex{
+  flex: 1;
+}
+.putTable .row .wFix{
+  width: 150rpx;
+}

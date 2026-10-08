@@ -1,0 +1,80 @@
+
+.myField .item .input-text{
+  padding-right: 30rpx;
+}
+/* 侧边弹窗 */
+.filter-container{
+  height: 100%;
+}
+.filter-container input{
+  width: 90%;
+  display: block;
+  margin: 20rpx auto;
+  border:1rpx solid #dee2e9;
+  border-radius: 6rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  height: 80rpx;
+}
+.filter-container .scrollList{
+  height: calc(100% - 280rpx);
+}
+.filter-container .scrollList .item{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 24rpx;
+  border-bottom: 1rpx solid #dee2e9;
+}
+.filter-container .scrollList .item:first-child{
+  border-top: 1rpx solid #dee2e9;
+}
+.filter-container .bot-btn{
+  display: flex;
+}
+.filter-container .btn{
+  margin:30rpx auto;
+  width:150rpx;
+}
+.siteView{
+  height: calc(100% - 120rpx);
+}
+.siteList{
+  width: 50%;
+  box-sizing: border-box;
+  border:1rpx solid #eee;
+  float: left;
+  height: 100%;
+}
+.siteList .item{
+  padding: 20rpx;
+  line-height: 36rpx;
+  font-size: 24rpx;
+  border-bottom:1rpx solid #eee;
+  position: relative;
+}
+.siteList .item .count{
+  position: absolute;
+  right: 10rpx;
+  top: 18rpx;
+  border-radius: 50%;
+  background: red;
+  font-size: 20rpx;
+  z-index: 99;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 40rpx;
+}
+.siteList .item.active{
+  background: #2e9aff;
+  color: #fff;
+}
+.siteList .item.ProvinceSelect{
+  background: #1990ff;
+  color: #fff;
+}
+.siteList .item.citySelect{
+  background: #1aad19;
+  color: #fff;
+}

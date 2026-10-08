@@ -1,0 +1,13 @@
+.component_placeholder_color{
+    color: #c8c9cc!important;
+}
+.component_value_color{
+    color: #333!important;
+}
+.arrow-down{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    color: #999;
+    transform: translateY(-50%);
+}

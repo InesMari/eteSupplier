@@ -1,0 +1,69 @@
+<view class="print-container">
+    <!-- 隐藏的画布，用于绘制打印内容 -->
+    <canvas class="print-canvas" type="2d" id="{{canvasId}}"></canvas>
+
+    <!-- 运单号信息卡片 -->
+    <!-- <view class="info-card">
+        <view class="card-title">运单信息</view>
+        <view class="waybill-content">
+            <text class="waybill-label">运单号：</text>
+            <text class="waybill-number">{{waybillNum}}</text>
+            <view class="copy-btn" bindtap="copyWaybillNum">
+                <text>复制</text>
+            </view>
+        </view>
+    </view> -->
+
+    <!-- 打印机连接状态卡片 -->
+    <view class="info-card">
+        <view class="card-title">打印机状态</view>
+        <view class="printer-status">
+            <view class="status-row">
+                <text class="status-label">连接状态：</text>
+                <view class="status-badge {{isPrinterConnected ? 'connected' : 'disconnected'}}">
+                    <text>{{isPrinterConnected ? '已连接' : '未连接'}}</text>
+                </view>
+            </view>
+            <view class="status-row">
+                <text class="status-label">当前设备：</text>
+                <picker class="device-picker" mode="selector" range="{{deviceList}}" value="{{deviceIndex}}" range-key="name" bindchange="onDeviceChanged">
+                    <view class="picker-text">{{deviceList[deviceIndex].name}}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="action-buttons">
+            <button class="action-btn {{isPrinterConnected ? 'danger' : 'success'}}" bindtap="togglePrinterConnection" disabled="{{isConnecting}}">
+                {{isConnecting ? '连接中...' : (isPrinterConnected ? '断开连接' : '连接打印机')}}
+            </button>
+        </view>
+    </view>
+
+    <!-- 预览和打印卡片 -->
+    <view class="info-card">
+        <view class="card-title">打印预览</view>
+        <view class="preview-section" wx:if="{{previewImage}}">
+            <image class="preview-image" src="{{previewImage}}" mode="widthFix" bindtap="previewFullImage"></image>
+            <view class="preview-tip">点击图片查看大图</view>
+        </view>
+        <view class="preview-empty" wx:else>
+            <text>正在生成预览...</text>
+            <button class="retry-btn" bindtap="generatePreview">重新生成</button>
+        </view>
+        <view class="print-buttons">
+            <button class="print-btn success" bindtap="printQrcode" disabled="{{!waybillNum || !isPrinterConnected || isPrinting}}">
+                {{isPrinting ? '打印中...' : '立即打印'}}
+            </button>
+        </view>
+    </view>
+
+    <!-- 温馨提示 -->
+    <view class="tips-card">
+        <view class="tips-title">温馨提示</view>
+        <view class="tips-list">
+            <view class="tips-item">1. 请确保打印机已开启蓝牙并处于可被发现状态</view>
+            <view class="tips-item">2. 打印前请先连接打印机</view>
+            <view class="tips-item">3. 支持生成预览查看打印效果</view>
+            <view class="tips-item">4. 标签尺寸：40mm × 30mm</view>
+        </view>
+    </view>
+</view>

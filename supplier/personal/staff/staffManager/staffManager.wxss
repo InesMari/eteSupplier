@@ -1,0 +1,24 @@
+page {
+  background: #f5f5f5;
+  height: 100%;
+  padding-bottom: 0rpx;
+  box-sizing: border-box;
+}
+
+.scorll {
+  height: calc(100% - 200rpx);
+}
+
+.comList .item .del{
+  position: absolute;
+  top: 110rpx;
+  right: 30rpx;
+  font-size: 20rpx;
+}
+
+.comList .item .edit{
+  position: absolute;
+  top: 40rpx;
+  right: 30rpx;
+  font-size: 20rpx;
+}

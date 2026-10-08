@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "上传公里数",
+  "usingComponents": {
+    "alert":"/common/components/alert/alert"        
+  }
+}

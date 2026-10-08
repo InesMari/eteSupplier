@@ -1,0 +1,120 @@
+<view class="myField">
+  <view class="item clearfix">
+    <view class="label">车牌号</view>
+    <view class="input-text">
+      <picker mode="selector" range="{{vehicleList}}" bindchange="vehicleChange"
+        range-key="plateNumber" value="{{vehicleIndex}}">
+        <view wx:if="{{vehicleList.length !=0 &&vehicleIndex!=null}}">
+          {{vehicleList[vehicleIndex].plateNumber}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择车牌号</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">车长</view>
+    <view class="input-text">
+      <text wx:if="{{info.vehicleLengthName}}">{{info.vehicleLengthName}}</text>
+      <text style="color:#c8c9cc;" wx:else>车长</text>
+    </view>
+  </view> 
+  <view class="item clearfix">
+    <view class="label">车型</view>
+    <view class="input-text">
+      <text wx:if="{{info.vehicleTypeName}}">{{info.vehicleTypeName}}</text>
+      <text style="color:#c8c9cc;" wx:else>车型</text>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">预计到达起始地时间</view>
+    <view class="input-text">
+      <picker mode="selector" range="{{timeList}}" bindchange="timeChange" mode="multiSelector"
+        range-key="name" value="{{timeIndex}}">
+        <view wx:if="{{info.scheduleTime}}">
+          {{info.scheduleTime}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">装货起始地</view>
+    <view class="input-text">    
+      <picker mode="selector" range="{{baseCityList}}" bindchange="baseCityChange"
+        range-key="codeName" value="{{baseCityIndex}}">
+        <view wx:if="{{baseCityList.length !=0 &&baseCityIndex!=null}}">
+          {{baseCityList[baseCityIndex].codeName}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+      <!-- <regionPicker bind:change="regionBeginChange" showDistrict="{{false}}" value="{{regionBeginInitValue}}"></regionPicker> -->
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">线路目的地</view>
+    <view class="input-text" bindtap="showPopover">      
+      <view wx:if="{{info.endCityName}}">
+        {{info.endCityName}}
+      </view>
+      <view style="color:#c8c9cc;" wx:else>请选择</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      <!-- <regionPicker bind:change="regionEndChange" showDistrict="{{false}}" value="{{regionEndInitValue}}"></regionPicker> -->
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">司机姓名</view>
+    <view class="input-text">
+      <picker mode="selector" range="{{driveList}}" bindchange="driveChange"
+        range-key="driverName" value="{{driveIndex}}">
+        <view wx:if="{{driveList.length !=0 &&driveIndex!=null}}">
+          {{driveList[driveIndex].driverName}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择司机</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">司机手机</view>
+    <view class="input-text">
+      <text wx:if="{{info.driverPhone}}">{{info.driverPhone}}</text>
+      <text style="color:#c8c9cc;" wx:else>司机手机</text>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">备注</view>
+    <view class="input-text">
+      <input type="number" placeholder="备注" value="{{info.remark}}" data-key="remark" bindinput="inputSetDataDefault"></input>
+    </view>
+  </view>
+</view>
+<view class="footerBtn" bindtap="submit">
+  <button>提交</button>
+</view>
+
+
+
+<!-- 选择省市 -->
+<popover is-show="{{isShowPopover}}" width="60%">
+  <view class="filter-container">
+    <view class="selectVal"></view>
+    <view class="siteView clearfix">
+      <scroll-view class="siteList provinceList" scroll-y="{{true}}">
+        <view class="item {{item.active?'active':''}} {{item.select?'ProvinceSelect':''}}" wx:for="{{provinceList}}" wx:key="{{index}}" bindtap="selectProvince" data-item="{{item}}">
+          {{item.name}}        
+          <view class="count" wx:if="{{item.selectCount>0}}">{{item.selectCount}}</view>
+        </view>
+      </scroll-view>      
+      <scroll-view class="siteList cityList" scroll-y="{{true}}">
+        <view class="item {{item.select?'citySelect':''}}" wx:for="{{cityList}}" wx:key="{{index}}" bindtap="selectCity" data-item="{{item}}" data-index="{{index}}">{{item.name}}</view>
+      </scroll-view>
+    </view>
+    <view class="bot-btn clearfix">
+      <button type="warn" class="btn" size="mini" catchtap="clearCitys">清空</button>
+      <button type="primary" size="mini" class="btn" catchtap="sureCitys">确定</button>
+    </view>
+  </view>
+</popover>

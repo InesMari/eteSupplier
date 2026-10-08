@@ -1,0 +1,175 @@
+<view class="myField">
+  <view class="field-title">基本信息</view>
+  <view class="item clearfix">
+    <view class="label">车牌号</view>
+    <view class="input-text">
+      <picker mode="selector" disabled="{{disabled}}" range="{{vehicleData}}" bindchange="vehicleChange"
+        range-key="plateNumber" value="{{vehicleIndex}}">
+        <view wx:if="{{vehicleData.length !=0 &&vehicleIndex!=null}}">
+          {{vehicleData[vehicleIndex].plateNumber}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择车牌号</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">备注</view>
+    <view class="input-text">
+      <input type="text" disabled="{{disabled}}" placeholder="备注" value="{{info.remark}}" data-key="remark"
+        bindinput="inputSetDataDefault"></input>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>费用类型</view>
+    <view class="input-text">
+      <picker mode="selector" disabled="{{disabled}}" range="{{repairTypeData}}" bindchange="repairTypeChange"
+        range-key="codeName" value="{{repairTypeIndex}}">
+        <view wx:if="{{repairTypeData.length !=0 && repairTypeIndex!=null}}">
+          {{repairTypeData[repairTypeIndex].codeName}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>结算方式</view>
+    <view class="input-text">
+      <picker mode="selector" disabled="{{disabled}}" range="{{payModeData}}" bindchange="payModeChange"
+        range-key="codeName" value="{{payModeIndex}}">
+        <view wx:if="{{payModeData.length !=0 && payModeIndex!=null}}">
+          {{payModeData[payModeIndex].codeName}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+</view>
+<view class="myField mt_20 maintenance" wx:if="{{info.repairType == 2}}">
+  <view class="field-title">保养信息</view>
+  <view class="item clearfix">
+    <view class="label">保养费用</view>
+    <view class="input-text">
+      <input type="number" disabled="{{disabled}}" placeholder="请填写保养费用" value="{{info.fee}}" data-key="fee"
+        bindinput="inputSetDataDefault"></input>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>保养日期</view>
+    <view class="input-text">
+      <picker mode="date" disabled="{{disabled}}" value="{{info.feeDate}}" bindchange="bindDateChange"
+        data-key="feeDate">
+        <view wx:if="{{info.feeDate}}">
+          {{info.feeDate}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择保养日期</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>下次保养</view>
+    <view class="input-text">
+      <picker mode="date" disabled="{{disabled}}" value="{{info.nextMaintenanceDate}}" bindchange="bindDateChange"
+        data-key="nextMaintenanceDate">
+        <view wx:if="{{info.nextMaintenanceDate}}">
+          {{info.nextMaintenanceDate}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择下次保养日期</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">下次保养里程</view>
+    <view class="input-text">
+      <input type="number" disabled="{{disabled}}" placeholder="请填写下次保养里程" value="{{info.nextMaintenanceMileage}}"
+        data-key="nextMaintenanceMileage" bindinput="inputSetDataDefault"></input>
+    </view>
+  </view>
+</view>
+<view class="myField mt_20" wx:if="{{info.repairType == 1 || info.repairType == 3}}">
+  <view class="field-title">修理费用信息</view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>日期</view>
+    <view class="input-text">
+      <picker mode="date" disabled="{{disabled}}" value="{{info.feeDate}}" bindchange="bindFeeDateChange"
+        data-key="feeDate">
+        <view wx:if="{{info.feeDate}}">
+          {{info.feeDate}}
+        </view>
+        <view style="color:#c8c9cc;" wx:else>请选择</view>
+        <van-icon name="arrow-down" class="arrow-down" />
+      </picker>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>项目名称</view>
+    <view class="input-text">
+      <input type="text" disabled="{{disabled}}" placeholder="修理项目名称" value="{{info.feeProject}}" data-key="feeProject"
+        bindinput="inputSetItemDataDefault"></input>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label"><text class="red">*</text>金额</view>
+    <view class="input-text">
+      <input type="digit" disabled="{{disabled}}" placeholder="元" value="{{info.fee}}" data-key="fee"
+        bindinput="inputSetItemDataDefault"></input>
+    </view>
+  </view>
+</view>
+<view class="myField mt_20" wx:if="{{info.repairType}}">
+  <view class="field-title">修理费用信息</view>
+  <view class="item clearfix">
+    <view class="label">供应商名称</view>
+    <view class="input-text">
+      <input type="text" disabled="{{disabled}}" placeholder="供应商名称" value="{{info.supplierName}}"
+        data-key="supplierName" bindinput="inputSetItemDataDefault"></input>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">维修联系人</view>
+    <view class="input-text">
+      <input type="text" disabled="{{disabled}}" placeholder="维修联系人" value="{{info.linkMan}}" data-key="linkMan"
+        bindinput="inputSetItemDataDefault"></input>
+    </view>
+  </view>
+  <view class="item clearfix">
+    <view class="label">维修电话</view>
+    <view class="input-text">
+      <input type="text" disabled="{{disabled}}" placeholder="维修联系电话" value="{{info.linkPhone}}" data-key="linkPhone"
+        bindinput="inputSetItemDataDefault"></input>
+    </view>
+  </view>
+</view>
+<view class="myField mt_20">
+  <view class="field-title">附件</view>
+  <view class="item-upload clearfix">
+    <view class="upload-box">
+      <van-uploader file-list="{{fileList}}" bind:after-read="afterRead"
+        show-upload="{{(fileList.length<6 || !fileList) && !disabled}}" data-id="idCardBack" disabled="{{disabled}}"
+        deletable="{{!disabled}}">
+      </van-uploader>
+    </view>
+  </view>
+</view>
+<view class="myField mt_20">
+  <view class="field-title">付款截图</view>  
+  <view class="uploadTip">
+    <view>注：</view>
+    <view>微信付款要清晰显示转账单号或交易单号;</view>
+    <view>支付宝付款要清晰显示订单号(点开更多才会显示);</view>
+    <view>其他支付方式，也需清晰显示对应的单号;</view>
+  </view>
+  <view class="item-upload clearfix">
+    <view class="upload-box">
+      <van-uploader file-list="{{receiptsList}}" bind:after-read="afterReadReceipt" show-upload="{{(fileList.length<6 || !fileList) && !disabled}}" data-id="idCardBack" disabled="{{disabled}}" deletable="{{!disabled}}">
+      </van-uploader>
+    </view>
+  </view>
+</view>
+<view class="footerBtn" bindtap="submit" wx:if="{{!disabled}}">
+  <button>提交</button>
+</view>

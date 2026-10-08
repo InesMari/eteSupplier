@@ -1,0 +1,47 @@
+<camera wx:if="{{showCamera && !showPreview}}" resolution="high" frame-size="large" device-position="{{device}}" flash="{{flash}}" style="position: fixed;top:0;width:{{cameraWidth}}px;height:{{cameraHeight}}px;"></camera>
+<view class="preview-container" wx:else>
+  <image src="{{watermarkedImage}}" mode="{{imageMode || 'aspectFit'}}" style="width: 100%; height: calc(100vh - 90px); box-sizing: border-box;"></image>
+</view>
+
+<view class="focus-overlay" wx:if="{{showWatermark}}">
+  <view class="focus-box"></view>
+  <view class="focus-tip">请将里程数置于方框中进行拍摄</view>
+</view>
+
+<view class="watermark" wx:if="{{showWatermark}}">
+  <view class="topView">
+    <view class="time">
+      <view class="time-digit" wx:for="{{timeDigits}}" wx:key="index">{{item}}</view>
+    </view>
+    <image class="logo" src="/common/images/logo.png" mode="widthFix"></image>
+  </view>
+  <view class="bottomView">
+    <view class="line"></view>
+    <view class="dateweek">{{date + ' ' +week}}</view>
+    <view class="location_box">{{address}}</view>
+  </view>
+</view>
+
+<canvas type="2d" id="canvas" style="position: fixed; top: -10000px; left: -10000px; width: {{canvasWidth}}px;height: {{canvasHeight}}px;"></canvas>
+<!-- 调试查看base64图片 -->
+<!-- <image src="{{base64Data}}" mode="widthFix" style="position: fixed;top: 20%;left: 20%;width: 200rpx;z-index: 2222222;"></image> -->
+
+<view class="handle" wx:if="{{!showPreview}}">
+  <button class="handle_card" bindtap="setDevice">
+    <image class="handle_card_icon" src="/common/images/qh.png" mode="widthFix"></image>
+    <view class="handle_card_name">切换</view>
+  </button>
+  <button class="handle_ps" bindtap="takePhoto">
+    <image class="handle_ps_image" src="/common/images/ps.png" mode="widthFix"></image>
+    <view class="handle_ps_name">拍摄</view>
+  </button>
+  <button class="handle_card" bindtap="setFlash">
+    <image class="handle_card_icon" src="/common/images/sd.png" mode="widthFix"></image>
+    <view class="handle_card_name">闪光</view>
+  </button>
+</view>
+
+<view class="preview-buttons" wx:else>
+  <button class="preview-btn retake-btn" bindtap="retakePhoto">重拍</button>
+  <button class="preview-btn use-btn" bindtap="usePhoto">使用照片</button>
+</view>
